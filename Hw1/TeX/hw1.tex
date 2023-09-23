@@ -40,8 +40,8 @@
 \usepackage{titlesec}
 
 
-\titleformat{\section}{\normalfont\bfseries}{\thesection.}{1em}{}
-\titleformat{\subsection}{\small\bfseries}{\thesubsection.}{1em}{}
+\titleformat{\section}{\normalfont\bfseries}{\thesection.}{1ex}{}
+\titleformat{\subsection}{\small\bfseries}{\thesubsection.}{1ex}{}
 
 \usepackage{tikz, pgfplots}
 
@@ -299,7 +299,6 @@ print("Результат множення:", multiplication_result)
 Обчислення оберненої матриці здійснюється за формулою:
 
 \[ \mathrm{A}^{-1} = \frac{1}{\mathrm{det}(\mathrm{A})} \cdot \mathrm{adj}(\mathrm{A}), \]
-
 де $ \mathrm{det}(A) $ --- визначник матриці \(\mathrm A\),
 \(\mathrm{adj}(\mathrm{A})\) --- доповнена матриця.
 
@@ -485,10 +484,9 @@ print("Результат множення:", multiplication_result)
 \[
 	\mathrm C_{ij}  = \mathrm A_{ij} \cdot \mathrm B_{ij}
 \]
-
 де \(\mathrm C_{ij}\) --- елемент результуючої матриці \(\mathrm C\) на
 позиції \((i, j)\), \(\mathrm A_{ij}\) --- елемент матриці \(\mathrm A\)
-на позиції \((i, j)\) і \(\mathrm B_{ij}\) - елемент матриці
+на позиції \((i, j)\) і \(\mathrm B_{ij}\) --- елемент матриці
 \(\mathrm B\) на позиції \((i, j)\).
 
 Поелементне множення відрізняється від стандартного множення матриць,
@@ -584,7 +582,7 @@ print("Результат множення:", multiplication_result)
     print("Сума елементів матриці: ", sum_of_elements)
 \end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Матриця:
 	[[ 65  54  46 100  89]
 	 [ 19  41  79  28  70]
@@ -592,14 +590,14 @@ print("Результат множення:", multiplication_result)
 	 [ 46  35  18  68  27]
 	 [ 36  63  33  76   7]]
 	Сума елементів матриці:  1308
-\end{Verbatim}
+\end{out}
 
 \section{\texorpdfstring{Створіть дві матриці розміром
 		\(4\times 4\), заповніть їх випадковими цілими числами в діапазоні від 1
 		до 10 та знайдіть їхню
 		різницю.}{Створіть дві матриці розміром 4\textbackslash times 4, заповніть їх випадковими цілими числами в діапазоні від 1 до 10 та знайдіть їхню різницю.}}
 
-Віднімання матриць \(\mathrm A - \mathrm B\) - це операція обчислення
+Віднімання матриць \(\mathrm A - \mathrm B\) --- це операція обчислення
 матриці \(\mathrm C\) , усі елементи якої дорівнюють попарній різниці
 всіх відповідних елементів матриць \(\mathrm A\) і \(\mathrm B\), тобто
 фактичноце полементне віднімання.
