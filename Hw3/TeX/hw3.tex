@@ -1,0 +1,1015 @@
+%============================ Compiler Directives =======================%%
+%%                                                                        %%
+% !TeX program = pdflatex
+% !TeX encoding = utf8
+% !TeX spellcheck = uk_UA
+%%                                                                        %%
+%%============================== Клас документа ==========================%%
+%%                                                                        %%
+\documentclass[]{article}
+\usepackage[fontsize = 12pt]{fontsize}
+\usepackage{ifluatex}
+%%                                                                        %%
+%%========================== Мови, шрифти та кодування ===================%%
+%%
+\ifluatex                                                                        %%
+	\usepackage{fontspec}
+	\setsansfont{CMU Sans Serif}%{Arial}
+	\setmainfont{CMU Serif}%{Times New Roman}
+	\setmonofont{CMU Typewriter Text}%{Consolas}
+	\defaultfontfeatures{Ligatures={TeX}}
+	\usepackage[math-style=TeX]{unicode-math}
+\else
+	\usepackage[utf8]{inputenc}
+	\usepackage[T2A,T1]{fontenc}
+	\usepackage{amsmath}
+	%\usepackage{pscyr}
+	\usepackage{cmap}
+\fi
+\usepackage[english, russian, ukrainian]{babel}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{array}     % table support for pandoc >= 2.11.3
+    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+
+
+
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{hw3}
+
+
+
+
+
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb.
+    \makeatletter
+        \newbox\Wrappedcontinuationbox
+        \newbox\Wrappedvisiblespacebox
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
+        \newcommand*\Wrappedcontinuationindent {3ex }
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
+        % Take advantage of the already applied Pygments mark-up to insert
+        % potential linebreaks for TeX processing.
+        %        {, <, #, %, $, ' and ": go to next line.
+        %        _, }, ^, &, >, - and ~: stay at end of broken line.
+        % Use of \textquotesingle for straight quote.
+        \newcommand*\Wrappedbreaksatspecials {%
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}%
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
+        }
+        % Some characters . , ; ? ! / are not pygmentized.
+        % This macro makes them "active" and they will insert potential linebreaks
+        \newcommand*\Wrappedbreaksatpunct {%
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
+            \catcode`\.\active
+            \catcode`\,\active
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active
+            \lccode`\~`\~
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+
+
+
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k+kn}{import} \PY{n}{LinearRegression}
+\end{Verbatim}
+\end{tcolorbox}
+
+Якщо у вас є набір даних з \(m\) вибірок, кожна з яких називається
+\(x^{(i)}\) (\(n\)-вимірний вектор), і вектор результатів \$ Y \$
+(\(m\)-вимірний вектор), можна побудувати наступні матриці:
+
+\begin{enumerate}
+	\def\labelenumi{\arabic{enumi}.}
+	\tightlist
+	\item
+	      Матриця ознак
+\end{enumerate}
+
+\begin{equation*}
+\mathbf{X} =
+	\begin{pmatrix}
+		\vec{x}^{(1)} \\
+		\vec{x}^{(2)} \\
+		\vdots        \\
+		\vec{x}^{(m)} \\
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		1      & x_1^{(1)} & x_2^{(1)} & \ldots & x_n^{(1)} \\
+		1      & x_1^{(2)} & x_2^{(2)} & \ldots & x_n^{(2)} \\
+		\vdots & \vdots    & \vdots    & \ddots & \vdots    \\
+		1      & x_1^{(m)} & x_2^{(m)} & \ldots & x_n^{(m)} \\
+	\end{pmatrix}
+\end{equation*}
+
+
+\begin{enumerate}
+	\def\labelenumi{\arabic{enumi}.}
+	\setcounter{enumi}{1}
+	\tightlist
+	\item
+	      Вектор результатів
+\end{enumerate}
+
+\[
+	\vec{Y} =
+	\begin{pmatrix}
+		\vec{y}_1 \\
+		\vec{y}_2 \\
+		\vdots    \\
+		\vec{y}_m \\
+	\end{pmatrix}
+\]
+
+\begin{enumerate}
+	\def\labelenumi{\arabic{enumi}.}
+	\setcounter{enumi}{2}
+	\tightlist
+	\item
+	      Вектор вагових коефіцієнтів
+\end{enumerate}
+
+\[
+	\vec{w} =
+	\begin{pmatrix}
+		\vec{w}_0 \\
+		\vec{w}_1 \\
+		\vdots    \\
+		\vec{w}_n \\
+	\end{pmatrix}
+\]
+
+Наша задача --- проаналізувати, як залежить ціна на будинок \(h\)
+залежно від площі \(x_1\), кількості ванних кімнат \(x_2\) та кількості
+спалень \(x_2\).
+
+
+
+\subsection{Функція гіпотези лінійної
+	регресії}\label{ux444ux443ux43dux43aux446ux456ux44f-ux433ux456ux43fux43eux442ux435ux437ux438-ux43bux456ux43dux456ux439ux43dux43eux457-ux440ux435ux433ux440ux435ux441ux456ux457}
+
+Функція має вигляд: \[ \vec{h}(\vec{w}, X) = X \vec{w}, \] де $ \vec{w}
+$ --- вектор вагових коефіцієнтів, \$ X \$ --- вектор-стовпець векторів
+ознак (матриця ознак).
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{h}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{X}\PY{p}{)}\PY{p}{:}
+\PY{+w}{    }\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Calculate the hypothesis for linear regression.}
+
+\PY{l+s+sd}{    Parameters:}
+\PY{l+s+sd}{    W (numpy.ndarray): Weight vector (dimension: (n+1,)).}
+\PY{l+s+sd}{    X (numpy.ndarray): Feature matrix (dimension: (m, n+1)).}
+
+\PY{l+s+sd}{    Returns:}
+\PY{l+s+sd}{    hypothesis (numpy.ndarray): Hypothesis values (dimension: (m,)).}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{k}{return} \PY{n}{X} \PY{o}{@} \PY{n}{W}
+\end{Verbatim}
+\end{tcolorbox}
+
+\subsection{Функція
+	втрат}\label{ux444ux443ux43dux43aux446ux456ux44f-ux432ux442ux440ux430ux442}
+
+Функція має вигляд:
+
+\[ J(\vec{w}) = \frac1{2m} \left( \vec{h}(\vec{w}, \mathbf{X}) - \vec{Y} \right)^2. \]
+
+Функція втрати (loss function) є однією з ключових компонентів в задачах
+машинного навчання і глибокого навчання, і вона виконує декілька
+важливих функцій:
+
+\begin{enumerate}
+	\def\labelenumi{\arabic{enumi}.}
+	\item
+	      \textbf{Вимірювання помилки моделі}: Функція втрати визначає,
+	      наскільки добре модель попереджує або класифікує дані в порівнянні зі
+	      справжніми (очікуваними) значеннями. Вона обчислює різницю між
+	      прогнозованими і справжніми результатами. Ця різниця, яку часто
+	      називають ``помилкою'' або ``втратою'', вказує на те, наскільки
+	      великою є розрозненість між моделлю та даними.
+	\item
+	      \textbf{Оптимізація моделі}: Однією з центральних задач в машинному
+	      навчанні є оптимізація параметрів моделі так, щоб функція втрати була
+	      мінімізована. Іншими словами, ми намагаємося знайти такі значення
+	      параметрів моделі, які роблять прогнози якомога ближчими до справжніх
+	      даних. Це досягається шляхом зменшення значення функції втрати.
+	\item
+	      \textbf{Оцінка якості моделі}: Функція втрати дозволяє оцінювати
+	      якість моделі. Чим менше значення функції втрати, тим краще модель
+	      вирішує задачу. Виміряння втрати на навчальних та тестових даних
+	      допомагає визначити, наскільки добре модель узагальнює свої знання на
+	      нових даних.
+\end{enumerate}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{J}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{)}\PY{p}{:}
+\PY{+w}{    }\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Calculate the mean squared error (MSE) for linear regression.}
+
+\PY{l+s+sd}{    Parameters:}
+\PY{l+s+sd}{    W (numpy.ndarray): Weight vector (dimension: (n+1,)).}
+\PY{l+s+sd}{    X (numpy.ndarray): Feature matrix (dimension: (m, n+1)).}
+\PY{l+s+sd}{    Y (numpy.ndarray): Target vector (dimension: (m,)).}
+
+\PY{l+s+sd}{    Returns:}
+\PY{l+s+sd}{    mse (float): Mean squared error.}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{n}{m} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{Y}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Кількість навчальних прикладів}
+\PY{n}{error} \PY{o}{=} \PY{n}{h}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{X}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{Y}
+\PY{k}{return} \PY{l+m+mi}{1} \PY{o}{/} \PY{p}{(} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{m} \PY{p}{)} \PY{o}{*} \PY{n}{error} \PY{o}{@} \PY{n}{error}
+\end{Verbatim}
+\end{tcolorbox}
+
+\subsection{Градієнт функції
+	втрат}\label{ux433ux440ux430ux434ux456ux454ux43dux442-ux444ux443ux43dux43aux446ux456ux457-ux432ux442ux440ux430ux442}
+
+Вектор-градієнт функції втрат має вигляд:
+
+\[ \vec{\nabla} J = \frac1{m} \mathbf{X}^{\mathrm{T}} \cdot (\mathrm{X}\vec{w} - \vec{Y} )  = \frac1{m} \mathbf{X}^{\mathrm{T}} \cdot (\vec{h} - \vec{Y} ). \]
+
+\textbf{Градієнт функції втрат} (gradient of the loss function) - це
+вектор, який показує напрямок та швидкість найшвидшого зростання функції
+втрат в околицях поточного значення параметрів моделі. Іншими словаим,
+це вектор, який показує, як зміниться значення функції втрат при дуже
+невеликих змінах параметрів моделі.
+
+Основні аспекти градієнту функції втрат:
+
+\begin{itemize}
+	\item
+	      \textbf{Напрямок}: Градієнт вказує напрямок найшвидшого зростання
+	      функції втрат. Якщо ви рухаєтесь в напрямку градієнту, то значення
+	      функції втрат буде зростати найшвидше.
+	\item
+	      \textbf{Величина}: Модуль градієнту (його довжина) показує, наскільки
+	      швидко зростає функція втрат в цьому напрямку. Більший градієнт вказує
+	      на більш значущі зміни в функції втрат при малих змінах параметрів
+	      моделі.
+\end{itemize}
+
+Використання градієнту функції втрат дуже важливо в процесі оптимізації
+моделі, так як він вказує на те, які кроки (зміни параметрів) потрібно
+зробити для покращення моделі. У методах оптимізації, таких як
+стохастичний градієнтний спуск, градієнт використовується для оновлення
+параметрів моделі з метою зменшення функції втрат.
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{nabla\PYZus{}J}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{)}\PY{p}{:}
+\PY{+w}{    }\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Computes the gradient of the loss function for linear regression.}
+
+\PY{l+s+sd}{    Parameters:}
+\PY{l+s+sd}{    W (numpy.ndarray): Vector of weights (dimensionality (n+1,)).}
+\PY{l+s+sd}{    X (numpy.ndarray): Feature matrix (dimensionality (m, n+1)).}
+\PY{l+s+sd}{    Y (numpy.ndarray): Target value vector (dimensionality (m,)).}
+
+\PY{l+s+sd}{    Returns:}
+\PY{l+s+sd}{    Gradient (numpy.ndarray): The gradient of the loss function (dimension (n+1,)).}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+
+\PY{n}{m} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{Y}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Кількість навчальних прикладів}
+\PY{n}{error}  \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{T} \PY{o}{@} \PY{p}{(}\PY{n}{h}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{X}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{Y}\PY{p}{)}
+\PY{n}{gradient} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{/} \PY{n}{m}\PY{p}{)} \PY{o}{*} \PY{n}{error}
+\PY{k}{return} \PY{n}{gradient}
+\end{Verbatim}
+\end{tcolorbox}
+
+\subsection{Функція градієнтного
+	спуску}\label{ux444ux443ux43dux43aux446ux456ux44f-ux433ux440ux430ux434ux456ux454ux43dux442ux43dux43eux433ux43e-ux441ux43fux443ux441ux43aux443}
+
+Формула для обчислення вагових коефіцієнтів в результаті одного кроку
+градієнтного спуску (одна ітерація) має вигляд:
+
+\[ \vec{w} = \vec{w}_{\text{prev}} - \alpha \vec{\nabla} J \]
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{gradient\PYZus{}descent}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{,}
+\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.001}\PY{p}{,}
+\PY{n}{num\PYZus{}iterations}\PY{o}{=}\PY{l+m+mi}{1\PYZus{}000}\PY{p}{,}
+\PY{n}{epsilon}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}7}\PY{p}{)}\PY{p}{:}
+\PY{+w}{    }\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Perform gradient descent optimization for linear regression.}
+
+\PY{l+s+sd}{    Parameters:}
+\PY{l+s+sd}{    X (numpy.ndarray): Feature matrix (dimension: (m, n+1)).}
+\PY{l+s+sd}{    Y (numpy.ndarray): Target vector (dimension: (m,)).}
+\PY{l+s+sd}{    alpha (float, optional): Learning rate. Defaults to 0.001.}
+\PY{l+s+sd}{    num\PYZus{}iterations (int, optional): Number of iterations. Defaults to 1000.}
+\PY{l+s+sd}{    epsilon (float, optional): Convergence threshold. Defaults to 1e\PYZhy{}7.}
+
+\PY{l+s+sd}{    Returns:}
+\PY{l+s+sd}{    W (numpy.ndarray): Optimized weight vector (dimension: (n+1,)).}
+\PY{l+s+sd}{    history\PYZus{}J (list): List of loss values during optimization.}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+
+\PY{n}{n} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}  \PY{c+c1}{\PYZsh{} Кількість ознак (у цьому випадку 3: area, bedrooms, bathrooms)}
+
+\PY{c+c1}{\PYZsh{} Ініціалізуємо вагові коефіцієнти випадковими значеннями}
+\PY{n}{W} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+
+\PY{n}{J\PYZus{}0} \PY{o}{=} \PY{n}{J}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{)}
+
+\PY{n}{history\PYZus{}J} \PY{o}{=} \PY{p}{[}\PY{n}{J\PYZus{}0}\PY{p}{]}
+
+\PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}iterations}\PY{p}{)}\PY{p}{:}
+\PY{c+c1}{\PYZsh{} Оновлюємо коефіцієнти}
+\PY{n}{W} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{n}{alpha} \PY{o}{*} \PY{n}{nabla\PYZus{}J}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{)}
+
+\PY{n}{J\PYZus{}current} \PY{o}{=} \PY{n}{J}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{)}
+
+\PY{n}{history\PYZus{}J}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{J\PYZus{}current}\PY{p}{)}
+
+\PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{J\PYZus{}current} \PY{o}{\PYZhy{}} \PY{n}{J\PYZus{}0}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{epsilon}\PY{p}{:}
+\PY{k}{break}
+
+\PY{n}{J\PYZus{}0} \PY{o}{=} \PY{n}{J\PYZus{}current}
+
+
+\PY{k}{return} \PY{n}{W}\PY{p}{,} \PY{n}{history\PYZus{}J}
+\end{Verbatim}
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Housing.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{X} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{area}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bedrooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bathrooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}numpy}\PY{p}{(}\PY{p}{)}
+\PY{n}{Y} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{price}\PY{o}{.}\PY{n}{to\PYZus{}numpy}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\subsection{Нормалізація
+	даних}\label{ux43dux43eux440ux43cux430ux43bux456ux437ux430ux446ux456ux44f-ux434ux430ux43dux438ux445}
+
+Щоб наша модель швидше навчалась, необхідно виконати нормалізацію даних,
+оскільки \(x_1 = \text{area}\) сильно відрізняється за порядком від
+\(x_2 = \text{bedrooms}\) та \(x_3 = \text{bathrooms}\).
+
+Нормалізацію виконаємо за формулою:
+
+\[ \mathrm{X}^{\text{norm}} = \frac{\mathrm{X} - \overline{\mathrm{X}}}{\sigma}, \]
+
+де \(\overline{\mathrm{X}}\) - середнє (за стовбчиком), \(\sigma\) -
+дисперсія (стандртне відхилення).
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{normalize\PYZus{}features}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{:}
+\PY{n}{mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\PY{n}{std} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Перевіряємо, що стандартне відхилення не дорівнює нулю}
+\PY{n}{std}\PY{p}{[}\PY{n}{std} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+
+\PY{n}{normalized\PYZus{}X} \PY{o}{=} \PY{p}{(}\PY{n}{X} \PY{o}{\PYZhy{}} \PY{n}{mean}\PY{p}{)} \PY{o}{/} \PY{n}{std}
+\PY{k}{return} \PY{n}{normalized\PYZus{}X}\PY{p}{,} \PY{n}{mean}\PY{p}{,} \PY{n}{std}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Нормалізуємо ознаки}
+\PY{n}{X\PYZus{}n}\PY{p}{,} \PY{n}{mean}\PY{p}{,} \PY{n}{std} \PY{o}{=} \PY{n}{normalize\PYZus{}features}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Додаємо стовпець з одиницями для вільного члена (bias)}
+\PY{n}{X\PYZus{}n} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{column\PYZus{}stack}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{X\PYZus{}n}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Викликаємо функцію градієнтного спуску}
+\PY{n}{learned\PYZus{}weights}\PY{p}{,} \PY{n}{history\PYZus{}J} \PY{o}{=} \PY{n}{gradient\PYZus{}descent}\PY{p}{(}\PY{n}{X\PYZus{}n}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{n}{num\PYZus{}iterations}\PY{o}{=}\PY{l+m+mi}{100\PYZus{}000}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Відновлюємо ненормалізовані ваги}
+\PY{n}{intercept} \PY{o}{=} \PY{n}{learned\PYZus{}weights}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{coefficients} \PY{o}{=} \PY{n}{learned\PYZus{}weights}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{/} \PY{n}{std}
+\end{Verbatim}
+\end{tcolorbox}
+
+\subsubsection{Вагові коефіцієнти після градієнтного
+	спуску}\label{ux432ux430ux433ux43eux432ux456-ux43aux43eux435ux444ux456ux446ux456ux454ux43dux442ux438-ux43fux456ux441ux43bux44f-ux433ux440ux430ux434ux456ux454ux43dux442ux43dux43eux433ux43e-ux441ux43fux443ux441ux43aux443}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Вільний член (intercept): }\PY{l+s+si}{\PYZob{}}\PY{n}{intercept}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Коефіцієнти ознак (area, bedrooms, bathrooms): }\PY{l+s+si}{\PYZob{}}\PY{n}{coefficients}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+	Вільний член (intercept): 4766729.236934193
+	Коефіцієнти ознак (area, bedrooms, bathrooms): [3.78762791e+02 4.06820872e+05
+	1.38604820e+06]
+\end{Verbatim}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{history\PYZus{}J}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Номер ітерації}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Значення функції втрат, J}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Графік зміни функції втрат від ітерації}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{center}
+	\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{hw3_files/hw3_22_0.png}
+\end{center}
+{ \hspace*{\fill} \\}
+
+Аналітичний вираз для вектора вагових коефіцієнтів:
+
+\[ \vec{w}^* = \left(\mathbf{X}^{\mathrm{T}} \mathbf{X}\right)^{-1}\mathbf{X}^{\mathrm{T}} \vec{y}. \]
+
+Аналітичний метод надає точні значення коефіцієнтів, але для знаходження
+вектора вагових коефіцієнтів за аналітичним методом потрібно обчислювати
+обернену матрицю
+\(\left(\mathbf{X}^{\mathrm{T}} \mathbf{X}\right)^{-1}\), що може
+вимагати значних обчислювальних ресурсів. Зокрема, обчислення оберненої
+матриці має складність порядку \(k^3\), де \(k\) - розмірність матриці.
+Це може бути дуже витратним з обчислювальної точки зору.
+
+Окрім того, якщо матриця \(\mathbf{X}^{\mathrm{T}} \mathbf{X}\) є погано
+обумовленою, це означає, що власні числа цієї матриці близькі до нуля.
+Погано обумовлена матриця може виникнути, наприклад, коли деякі ознаки
+(стовпці матриці \(\mathbf{X}\)) мають високу кореляцію або
+колінеарність. У таких випадках обчислення оберненої матриці може бути
+непростим завданням, і воно може стати чисельно нестійким, що призводить
+до неточностей і неправильних результатів.
+
+Отже, в реальних задачах машинного навчання, де матриця
+\(\mathbf{X}^{\mathrm{T}} \mathbf{X}\) може бути погано обумовленою або
+великого розміру, аналітичний метод може бути невигідним через
+обчислювальну складність та чисельну нестійкість, і частіше
+використовуються інші методи оптимізації, такі як ітеративні методи
+(наприклад, градієнтний спуск), які є більш ефективними та стійкими до
+чисельних проблем.
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{analitical\PYZus{}W} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{pinv}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{T} \PY{o}{@} \PY{n}{X}\PY{p}{)} \PY{o}{@} \PY{n}{X}\PY{o}{.}\PY{n}{T} \PY{o}{@} \PY{n}{Y}
+\PY{n}{analitical\PYZus{}W}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+	\prompt{Out}{outcolor}{12}{\boxspacing}
+	\begin{Verbatim}[commandchars=\\\{\}]
+		array([3.72448352e+02, 3.68974672e+05, 1.37031315e+06])
+	\end{Verbatim}
+\end{tcolorbox}
+
+\section{\texorpdfstring{Алгоритми бібліотеки
+	  \texttt{sklearn.linear\_model}}{Алгоритми бібліотеки sklearn.linear\_model}}\label{ux430ux43bux433ux43eux440ux438ux442ux43cux438-ux431ux456ux431ux43bux456ux43eux442ux435ux43aux438-sklearn.linear_model}
+
+Алгоритми реалізують метод найменших квадратів (МНК)
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{regressor} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{)}
+\PY{n}{h\PYZus{}sk} \PY{o}{=} \PY{n}{regressor}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\subsection{\texorpdfstring{Візуалізація за
+		\texttt{sklearn.linear\_model}}{Візуалізація за sklearn.linear\_model}}\label{ux432ux456ux437ux443ux430ux43bux456ux437ux430ux446ux456ux44f-ux437ux430-sklearn.linear_model}
+
+Цікаво побачити результати лінійної регресії.
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Створимо маску для фільтрації даних з урахуванням фіксованих значень}
+\PY{n}{f\PYZus{}1}\PY{p}{,} \PY{n}{f\PYZus{}2} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}
+
+\PY{n}{mask} \PY{o}{=} \PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{f\PYZus{}1}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]} \PY{o}{==} \PY{n}{f\PYZus{}2}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Обираємо відповідні значення для фіксованих ознак і передбачені значення}
+\PY{n}{selected\PYZus{}feature} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n}{mask}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{h\PYZus{}sk\PYZus{}selected} \PY{o}{=} \PY{n}{h\PYZus{}sk}\PY{p}{[}\PY{n}{mask}\PY{p}{]}
+\PY{n}{Y\PYZus{}selected} \PY{o}{=} \PY{n}{Y}\PY{p}{[}\PY{n}{mask}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Гграфік залежності гіпотези від обраної ознаки за фіксованих значень інших ознак}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{selected\PYZus{}feature}\PY{p}{,} \PY{n}{h\PYZus{}sk\PYZus{}selected}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Гипотеза}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{selected\PYZus{}feature}\PY{p}{,} \PY{n}{Y\PYZus{}selected}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Дані}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Обрана ознака (area)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Передбачені значення}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Графік залежності гіпотези від площі (area) (за фіксованих bedrooms =}\PY{l+s+si}{\PYZob{}}\PY{n}{f\PYZus{}1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ і bathrooms=}\PY{l+s+si}{\PYZob{}}\PY{n}{f\PYZus{}2}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{center}
+	\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{hw3_files/hw3_28_0.png}
+\end{center}
+{ \hspace*{\fill} \\}
+
+
+
+\subsection{Результати}\label{ux440ux435ux437ux443ux43bux44cux442ux430ux442ux438}
+
+\begin{enumerate}
+	\def\labelenumi{\arabic{enumi}.}
+	\tightlist
+	\item
+	      За ``self-made'' алгоритмом градієнтного спуску
+\end{enumerate}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Коефіцієнти ознак (area, bedrooms, bathrooms): }\PY{l+s+si}{\PYZob{}}\PY{n}{coefficients}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+Коефіцієнти ознак (area, bedrooms, bathrooms): [3.78762791e+02 4.06820872e+05
+1.38604820e+06]
+\end{Verbatim}
+
+\begin{enumerate}
+	\def\labelenumi{\arabic{enumi}.}
+	\setcounter{enumi}{1}
+	\tightlist
+	\item
+	      За аналітичним розрахунком
+\end{enumerate}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Коефіцієнти ознак (area, bedrooms, bathrooms): }\PY{l+s+si}{\PYZob{}}\PY{n}{analitical\PYZus{}W}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+	Коефіцієнти ознак (area, bedrooms, bathrooms): [3.72448352e+02 3.68974672e+05
+	1.37031315e+06]
+\end{Verbatim}
+
+\begin{enumerate}
+	\def\labelenumi{\arabic{enumi}.}
+	\setcounter{enumi}{2}
+	\tightlist
+	\item
+	      За МНК із бібліотеки \texttt{scisklearn.linear\_model}
+\end{enumerate}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Коефіцієнти ознак (area, bedrooms, bathrooms): }\PY{l+s+si}{\PYZob{}}\PY{n}{regressor}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+Коефіцієнти ознак (area, bedrooms, bathrooms): [3.78762754e+02 4.06820034e+05
+1.38604950e+06]
+\end{Verbatim}
+
+\subsection{Вартість
+	квартири}\label{ux432ux430ux440ux442ux456ux441ux442ux44c-ux43aux432ux430ux440ux442ux438ux440ux438}
+
+Розглянемо конкретний випадок. Зробимо передбачення ціни на квартиру яка
+має характеристики \(x_1 = 7420\), \(x_2 = 3\), \(x_3 = 1\).
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{my\PYZus{}X} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{7420}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{enumerate}
+	\def\labelenumi{\arabic{enumi}.}
+	\tightlist
+	\item
+	      Наша функція гіпотези
+\end{enumerate}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{19}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Ціна за квартиру }\PY{l+s+si}{\PYZob{}}\PY{n}{h}\PY{p}{(}\PY{n}{coefficients}\PY{p}{,}\PY{+w}{ }\PY{n}{my\PYZus{}X}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.0f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+	Ціна за квартиру 5416931
+\end{Verbatim}
+
+\begin{enumerate}
+	\def\labelenumi{\arabic{enumi}.}
+	\setcounter{enumi}{1}
+	\tightlist
+	\item
+	      Функція бібліотеки \texttt{scisklearn.linear\_model}
+\end{enumerate}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Ціна за квартиру }\PY{l+s+si}{\PYZob{}}\PY{n}{regressor}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{my\PYZus{}X}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.0f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+	Ціна за квартиру 5243758
+\end{Verbatim}
+
+\subsection{Висновки}\label{ux432ux438ux441ux43dux43eux432ux43aux438}
+
+Відмінності в значеннях коефіцієнтів між методами (градієнтним спуском,
+аналітичним методом і МНК) може бути зумовлена відмінностями в підходах
+і параметрах кожного методу.
+
+У цьому контексті:
+
+\begin{enumerate}
+	\def\labelenumi{\arabic{enumi}.}
+	\item
+	      Градієнтний спуск - ітеративний метод, який залежить від початкової
+	      ініціалізації та параметрів навчання, таких як швидкість навчання.
+	      Результати можуть варіюватися залежно від цих факторів.
+	\item
+	      Аналітичний метод - знаходить точне аналітичне рішення і не залежить
+	      від параметрів навчання.
+	\item
+	      Метод найменших квадратів (МНК) - також знаходить точне рішення і не
+	      вимагає налаштування параметрів навчання.
+\end{enumerate}
+
+Відмінності у вагових коефіцієнтах можуть бути спричинені як
+відмінностями в методах оптимізації, так і в особливостях даних, таких
+як наявність викидів, шумів або кореляцій між ознаками. Однак важливо
+зазначити, що за правильного налаштування й обробки даних відмінності в
+коефіцієнтах між цими методами мають бути незначними, і всі три методи
+мають давати схожі результати в контексті лінійної регресії.
+
+
+
+
+% Add a bibliography block to the postdoc
+
+
+
+\end{document}
