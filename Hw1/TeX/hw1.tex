@@ -1,18 +1,12 @@
-%%============================ Compiler Directives =======================%%
-%%                                                                        %%
-% !TeX program = pdflatex
+% !TeX program = lualatex
 % !TeX encoding = utf8
 % !TeX spellcheck = uk_UA
-%%                                                                        %%
-%%============================== Клас документа ==========================%%
-%%                                                                        %%
+
 \documentclass[]{article}
 \usepackage[fontsize = 12pt]{fontsize}
 \usepackage{ifluatex}
-%%                                                                        %%
-%%========================== Мови, шрифти та кодування ===================%%
-%%
-\ifluatex                                                                        %%
+
+\ifluatex
 	\usepackage{fontspec}
 	\setsansfont{CMU Sans Serif}%{Arial}
 	\setmainfont{CMU Serif}%{Times New Roman}
@@ -22,412 +16,113 @@
 \else
 	\usepackage[utf8]{inputenc}
 	\usepackage[T2A,T1]{fontenc}
-	\usepackage{amsmath}
-	%\usepackage{pscyr}
 	\usepackage{cmap}
 \fi
 \usepackage[english, russian, ukrainian]{babel}
 
-    \usepackage[breakable, most, minted]{tcolorbox}
-    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+\usepackage[%
+	a4paper,%
+	footskip=1cm,%
+	headsep=0.3cm,%
+	top=2cm, %поле сверху
+	bottom=2cm, %поле снизу
+	left=2cm, %поле ліворуч
+	right=2cm, %поле праворуч
+    ]{geometry}
+\renewcommand{\baselinestretch}{1}
+
+\clubpenalty =10000
+\widowpenalty=10000
+
+\setlength{\parskip}{0.5ex}%
+\setlength{\parindent}{2.5em}%
+
+\usepackage{titlesec}
 
 
-    % Basic figure setup, for now with no caption control since it's done
-    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
-    \usepackage{graphicx}
-    % Maintain compatibility with old templates. Remove in nbconvert 6.0
-    \let\Oldincludegraphics\includegraphics
-    % Ensure that by default, figures have no caption (until we provide a
-    % proper Figure object with a Caption API and a way to capture that
-    % in the conversion process - todo).
-    \usepackage{caption}
-    \DeclareCaptionFormat{nocaption}{}
-    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+\titleformat{\section}{\normalfont\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}{\small\bfseries}{\thesubsection.}{1em}{}
 
-    \usepackage{float}
-    \floatplacement{figure}{H} % forces figures to be placed at the correct location
-    \usepackage{xcolor} % Allow colors to be defined
-    \usepackage{enumerate} % Needed for markdown enumerations to work
-    \usepackage{geometry} % Used to adjust the document margins
-    \usepackage{amsmath} % Equations
-    \usepackage{amssymb} % Equations
-    \usepackage{textcomp} % defines textquotesingle
-    % Hack from http://tex.stackexchange.com/a/47451/13684:
-    \AtBeginDocument{%
-        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
-    }
-    \usepackage{upquote} % Upright quotes for verbatim code
-    \usepackage{eurosym} % defines \euro
+\usepackage{tikz, pgfplots}
 
-    \usepackage{iftex}
-    \ifPDFTeX
-        \usepackage[T1]{fontenc}
-        \IfFileExists{alphabeta.sty}{
-              \usepackage{alphabeta}
-          }{
-              \usepackage[mathletters]{ucs}
-              \usepackage[utf8x]{inputenc}
-          }
-    \else
-        \usepackage{fontspec}
-        \usepackage{unicode-math}
-    \fi
+\usepackage[%colorlinks=true,
+	%urlcolor = blue, %Colour for external hyperlinks
+	%linkcolor  = malina, %Colour of internal links
+	%citecolor  = green, %Colour of citations
+	bookmarks = true,
+	bookmarksnumbered=true,
+	unicode,
+	linktoc = all,
+	hypertexnames=false,
+	pdftoolbar=false,
+	pdfpagelayout=TwoPageRight,
+	pdfauthor={Ponomarenko S.M. aka sergiokapone},
+	pdfdisplaydoctitle=true,
+	pdfencoding=auto
+	]%
+	{hyperref}
+		\makeatletter
+	\AtBeginDocument{
+	\hypersetup{
+		pdfinfo={
+		Title={\@title},
+		}
+	}
+	}
+	\makeatother
+\usepackage{amsmath}
 
-    \usepackage{fancyvrb} % verbatim replacement that allows latex
-    \usepackage{grffile} % extends the file name processing of package graphics
-                         % to support a larger range
-    \makeatletter % fix for old versions of grffile with XeLaTeX
-    \@ifpackagelater{grffile}{2019/11/01}
-    {
-      % Do nothing on new versions
-    }
-    {
-      \def\Gread@@xetex#1{%
-        \IfFileExists{"\Gin@base".bb}%
-        {\Gread@eps{\Gin@base.bb}}%
-        {\Gread@@xetex@aux#1}%
-      }
-    }
-    \makeatother
-    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
-    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+\usepackage[breakable, most, minted]{tcolorbox}
 
-    % The hyperref package gives us a pdf with properly built
-    % internal navigation ('pdf bookmarks' for the table of contents,
-    % internal cross-reference links, web links for URLs, etc.)
-    \usepackage{hyperref}
-    % The default LaTeX title has an obnoxious amount of whitespace. By default,
-    % titling removes some of it. It also provides customization options.
-    \usepackage{titling}
-    \usepackage{longtable} % longtable support required by pandoc >1.10
-    \usepackage{booktabs}  % table support for pandoc > 1.12.2
-    \usepackage{array}     % table support for pandoc >= 2.11.3
-    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
-    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
-    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
-                                % normalem makes italics be italics, not underlines
-    \usepackage{mathrsfs}
-
-
-
-    % Colors for the hyperref package
-    \definecolor{urlcolor}{rgb}{0,.145,.698}
-    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
-    \definecolor{citecolor}{rgb}{.12,.54,.11}
-
-    % ANSI colors
-    \definecolor{ansi-black}{HTML}{3E424D}
-    \definecolor{ansi-black-intense}{HTML}{282C36}
-    \definecolor{ansi-red}{HTML}{E75C58}
-    \definecolor{ansi-red-intense}{HTML}{B22B31}
-    \definecolor{ansi-green}{HTML}{00A250}
-    \definecolor{ansi-green-intense}{HTML}{007427}
-    \definecolor{ansi-yellow}{HTML}{DDB62B}
-    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
-    \definecolor{ansi-blue}{HTML}{208FFB}
-    \definecolor{ansi-blue-intense}{HTML}{0065CA}
-    \definecolor{ansi-magenta}{HTML}{D160C4}
-    \definecolor{ansi-magenta-intense}{HTML}{A03196}
-    \definecolor{ansi-cyan}{HTML}{60C6C8}
-    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
-    \definecolor{ansi-white}{HTML}{C5C1B4}
-    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
-    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
-    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
-
-    % common color for the border for error outputs.
-    \definecolor{outerrorbackground}{HTML}{FFDFDF}
-
-    % commands and environments needed by pandoc snippets
-    % extracted from the output of `pandoc -s`
-    \providecommand{\tightlist}{%
-      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-    % Add ',fontsize=\small' for more characters per line
-    \newenvironment{Shaded}{}{}
-    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
-    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
-    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
-    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
-    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
-    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
-    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
-    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
-    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
-    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
-    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
-    \newcommand{\RegionMarkerTok}[1]{{#1}}
-    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
-    \newcommand{\NormalTok}[1]{{#1}}
-
-    % Additional commands for more recent versions of Pandoc
-    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
-    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
-    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
-    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
-    \newcommand{\ImportTok}[1]{{#1}}
-    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
-    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
-    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
-    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
-    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
-    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
-    \newcommand{\BuiltInTok}[1]{{#1}}
-    \newcommand{\ExtensionTok}[1]{{#1}}
-    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
-    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
-    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
-    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
-
-
-    % Define a nice break command that doesn't care if a line doesn't already
-    % exist.
-    \def\br{\hspace*{\fill} \\* }
-    % Math Jax compatibility definitions
-    \def\gt{>}
-    \def\lt{<}
-    \let\Oldtex\TeX
-    \let\Oldlatex\LaTeX
-    \renewcommand{\TeX}{\textrm{\Oldtex}}
-    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
-    % Document parameters
-    % Document title
-    \title{Домашнє завдання №1 (Модуль 1. Знайомство з Data Science)}
-
-
-
-
-
-% Pygments definitions
-\makeatletter
-\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
-    \let\PY@ul=\relax \let\PY@tc=\relax%
-    \let\PY@bc=\relax \let\PY@ff=\relax}
-\def\PY@tok#1{\csname PY@tok@#1\endcsname}
-\def\PY@toks#1+{\ifx\relax#1\empty\else%
-    \PY@tok{#1}\expandafter\PY@toks\fi}
-\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
-    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
-\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
-
-\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
-\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
-\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
-\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
-\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
-\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
-\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
-\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
-\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
-\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
-\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
-\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
-\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
-\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
-\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
-\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
-\@namedef{PY@tok@ge}{\let\PY@it=\textit}
-\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
-\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
-\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
-\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
-\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
-\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
-\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
-\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
-\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
-
-\def\PYZbs{\char`\\}
-\def\PYZus{\char`\_}
-\def\PYZob{\char`\{}
-\def\PYZcb{\char`\}}
-\def\PYZca{\char`\^}
-\def\PYZam{\char`\&}
-\def\PYZlt{\char`\<}
-\def\PYZgt{\char`\>}
-\def\PYZsh{\char`\#}
-\def\PYZpc{\char`\%}
-\def\PYZdl{\char`$}
-\def\PYZhy{\char`\-}
-\def\PYZsq{\char`\'}
-\def\PYZdq{\char`\"}
-\def\PYZti{\char`\~}
-% for compatibility with earlier versions
-\def\PYZat{@}
-\def\PYZlb{[}
-\def\PYZrb{]}
-\makeatother
-
-
-    % For linebreaks inside Verbatim environment from package fancyvrb.
-    \makeatletter
-        \newbox\Wrappedcontinuationbox
-        \newbox\Wrappedvisiblespacebox
-        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
-        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
-        \newcommand*\Wrappedcontinuationindent {3ex }
-        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
-        % Take advantage of the already applied Pygments mark-up to insert
-        % potential linebreaks for TeX processing.
-        %        {, <, #, %, $, ' and ": go to next line.
-        %        _, }, ^, &, >, - and ~: stay at end of broken line.
-        % Use of \textquotesingle for straight quote.
-        \newcommand*\Wrappedbreaksatspecials {%
-            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
-            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
-            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
-            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
-            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
-            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
-            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
-            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
-            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
-            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`$}{\char`$}}%
-            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
-            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
-            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
-            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
-        }
-        % Some characters . , ; ? ! / are not pygmentized.
-        % This macro makes them "active" and they will insert potential linebreaks
-        \newcommand*\Wrappedbreaksatpunct {%
-            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
-            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
-            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
-            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
-            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
-            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
-            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
-            \catcode`\.\active
-            \catcode`\,\active
-            \catcode`\;\active
-            \catcode`\:\active
-            \catcode`\?\active
-            \catcode`\!\active
-            \catcode`\/\active
-            \lccode`\~`\~
-        }
-    \makeatother
-
-    \let\OriginalVerbatim=\Verbatim
-    \makeatletter
-    \renewcommand{\Verbatim}[1][1]{%
-        %\parskip\z@skip
-        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
-        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
-        \def\FancyVerbFormatLine ##1{\hsize\linewidth
-            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
-                \doublehyphendemerits\z@\finalhyphendemerits\z@
-                \strut ##1\strut}%
-        }%
-        % If the linebreak is at a space, the latter will be displayed as visible
-        % space at end of first line, and a continuation symbol starts next line.
-        % Stretch/shrink are however usually zero for typewriter font.
-        \def\FV@Space {%
-            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
-            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
-            {\kern\fontdimen2\font}%
-        }%
-
-        % Allow breaks at special characters using \PYG... macros.
-        \Wrappedbreaksatspecials
-        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
-        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
-    }
-    \makeatother
-
-    % Exact colors from NB
-    \definecolor{incolor}{HTML}{303F9F}
-    \definecolor{outcolor}{HTML}{D84315}
-    \definecolor{cellborder}{HTML}{CFCFCF}
-    \definecolor{cellbackground}{HTML}{F7F7F7}
-
-    % prompt
-    \makeatletter
-    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
-    \makeatother
-    \newcommand{\prompt}[4]{
-        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
-    }
-
-
-
-    % Prevent overflowing lines due to hard-to-break entities
-    \sloppy
-    % Setup hyperref package
-    \hypersetup{
-      breaklinks=true,  % so long urls are correctly broken across lines
-      colorlinks=true,
-      urlcolor=urlcolor,
-      linkcolor=linkcolor,
-      citecolor=citecolor,
-      }
-    % Slightly bigger margins than the latex defaults
-
-    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
-
-\newcounter{in}
-\def\in{\prompt{In}{incolor}{\stepcounter{in}\thein}{\boxspacing}}
 \usepackage{minted}
 
+\newcounter{pythoncode}
 \newtcblisting{pythoncode}{
     listing engine=minted,
     listing only,
+    sharp corners,
     breakable,
     size=fbox,
     boxrule=1pt,
     pad at break*=1mm,
-    colback=cellbackground,
-    colframe=cellborder,
+    colback=gray!5,
+    colframe=gray,
+    enhanced,
     minted language=python,
     minted options={
         autogobble,
         fontsize=\small,
         breaklines
-    }
+    },
+    overlay={
+        \node[anchor=north east, font=\ttfamily\scriptsize, color=blue] at (frame.north west) {[\the\numexpr\value{pythoncode}]:\relax};
+    },
+    code={\stepcounter{pythoncode}}
 }
 
+
+\newtcblisting{out}{
+    listing engine=minted,
+    listing only,
+    sharp corners,
+    breakable,
+    size=fbox,
+    boxrule=1pt,
+    pad at break*=1mm,
+    colback=gray!5,
+    colframe=gray,
+    enhanced,
+    minted language=python,
+    minted options={
+        autogobble,
+        fontsize=\small,
+        breaklines
+    },
+}
+
+
+
+\title{Знайомство з Numpy}
 \begin{document}
 
 \maketitle
@@ -436,203 +131,168 @@
 
 
 
-\section{Імпорт модулів}
+\section*{Імпорт модулів}
 
-\in%
+
 \begin{pythoncode}
-import numpy as np
+	import numpy as np
 \end{pythoncode}
+
 
 
 
 
 \section{Створіть одновимірний масив (вектор) з першими 10-ма
-	натуральними числами та виведіть його значення.}
+  натуральними числами та виведіть його значення.}
 
 Натуральні числа --- це числа, що виникають природним чином при лічбі.
 Це числа: \(1\), \(2\), \(3\), \(4\), \(\ldots\) Множину натуральних
 чисел прийнято позначати \(\mathbb{N}\).
 
-\in
+
 \begin{pythoncode}
-vector = np.arange(1, 11)
-print(vector)
+	vector = np.arange(1, 11)
+	print(vector)
 \end{pythoncode}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-	[ 1  2  3  4  5  6  7  8  9 10]
-\end{Verbatim}
+\begin{out}
+[ 1  2  3  4  5  6  7  8  9 10]
+\end{out}
 
 \section{Створіть двовимірний масив (матрицю) розміром 3x3,
-	заповніть його нулями та виведіть його
-	значення.}
-\in
+  заповніть його нулями та виведіть його
+  значення.}
+
 \begin{pythoncode}
-matrix = np.zeros((3, 3))
-print(matrix)
+	matrix = np.zeros((3, 3))
+	print(matrix)
 \end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 [[0. 0. 0.]
  [0. 0. 0.]
  [0. 0. 0.]]
-\end{Verbatim}
+\end{out}
 
-\section{\texorpdfstring{Створіть масив розміром \(5\times 5\), 		заповніть його випадковими цілими числами в діапазоні від 1 до 10 та 		виведіть його
-		значення.}{3. Створіть масив розміром 5\textbackslash times 5, заповніть його випадковими цілими числами в діапазоні від 1 до 10 та виведіть його значення.}}
+\section{Створіть масив розміром 5x5, заповніть його випадковими цілими числами в діапазоні від 1 до 10 та виведіть його значення}
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{5}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{n}{random\PYZus{}matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{random\PYZus{}matrix}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+\begin{pythoncode}
+    random_matrix = np.random.randint(1, 11, (5, 5))
+    print(random_matrix)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	[[ 7 10  4  6  7]
-		[ 1 10  1  1 10]
-		[10  9 10  6  3]
-		[10  7  9  6  6]
-		[ 9  2  4  4  4]]
-\end{Verbatim}
+	 [ 1 10  1  1 10]
+	 [10  9 10  6  3]
+	 [10  7  9  6  6]
+	 [ 9  2  4  4  4]]
+\end{out}
 
-\section{\texorpdfstring{Створіть масив розміром \(4\times 4\),
-		заповніть його випадковими дійсними числами в діапазоні від 0 до 1 та
-		виведіть його
-		значення.}{Створіть масив розміром 4\textbackslash times 4, заповніть його випадковими дійсними числами в діапазоні від 0 до 1 та виведіть його значення.}}
+\section{Створіть масив розміром 4x4, заповніть його випадковими дійсними числами в діапазоні від 0 до 1 та виведіть його значення.}
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{6}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{n}{random\PYZus{}matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{random\PYZus{}matrix}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+\begin{pythoncode}
+    random_matrix = np.random.rand(4, 4)
+    print(random_matrix)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	[[0.34716231 0.38666569 0.60847232 0.44947206]
-		[0.28441679 0.24889235 0.69068513 0.44390396]
-		[0.45757561 0.30179135 0.30334876 0.14319334]
-		[0.19297175 0.18552924 0.3236188  0.56707376]]
-\end{Verbatim}
+	 [0.28441679 0.24889235 0.69068513 0.44390396]
+	 [0.45757561 0.30179135 0.30334876 0.14319334]
+	 [0.19297175 0.18552924 0.3236188  0.56707376]]
+\end{out}
 
-\section{Створіть два одновимірних масиви розміром 5, заповніть їх
-	випадковими цілими числами в діапазоні від 1 до 10 та виконайте на них
-	поелементні операції додавання, віднімання та
-	множення.}
+\section{Створіть два одновимірних масиви розміром 5, заповніть  	випадковими цілими числами в діапазоні від 1 до 10 та виконайте на них 	поелементні операції додавання, віднімання та множення.}
 
-\subsection{Створення
-	масивів}
+\subsection{Створення масивів}
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{7}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{n}{array1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
-		\PY{n}{array2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+\begin{pythoncode}
+    array1 = np.random.randint(1, 11, 5)
+    array2 = np.random.randint(1, 11, 5)
 
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Масив 1:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{array1}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Масив 2:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{array2}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    print("Масив 1:", array1)
+    print("Масив 2:", array2)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Масив 1: [1 5 1 9 9]
 	Масив 2: [8 2 4 6 7]
-\end{Verbatim}
+\end{out}
 
-\subsection{Поелементні
-	операції}
+\subsection{Поелементні операції}
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{8}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Виконаємо поелементну операцію додавання}
-		\PY{n}{addition\PYZus{}result} \PY{o}{=} \PY{n}{array1} \PY{o}{+} \PY{n}{array2}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Результат додавання:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{addition\PYZus{}result}\PY{p}{)}
+\begin{pythoncode}
+addition_result = array1 + array2
+print("Результат додавання:", addition_result)
 
-		\PY{c+c1}{\PYZsh{} Виконаємо поелементну операцію віднімання}
-		\PY{n}{subtraction\PYZus{}result} \PY{o}{=} \PY{n}{array1} \PY{o}{\PYZhy{}} \PY{n}{array2}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Результат віднімання:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{subtraction\PYZus{}result}\PY{p}{)}
+# Виконаємо поелементну операцію віднімання
+subtraction_result = array1 - array2
+print("Результат віднімання:", subtraction_result)
 
-		\PY{c+c1}{\PYZsh{} Виконаємо поелементну операцію множення}
-		\PY{n}{multiplication\PYZus{}result} \PY{o}{=} \PY{n}{array1} \PY{o}{*} \PY{n}{array2}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Результат множення:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{multiplication\PYZus{}result}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+# Виконаємо поелементну операцію множення
+multiplication_result = array1 * array2
+print("Результат множення:", multiplication_result)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Результат додавання: [ 9  7  5 15 16]
 	Результат віднімання: [-7  3 -3  3  2]
 	Результат множення: [ 8 10  4 54 63]
-\end{Verbatim}
+\end{out}
 
-\section{Створіть два вектори розміром 7, заповніть довільними
-	числами та знайдіть їх скалярний
-	добуток.}
+\section{Створіть два вектори розміром 7, заповніть довільними 	числами та знайдіть їх скалярний добуток}
 
 Скалярний добуток (scalar or dot product) можна обчислити за наступною
 формулою
 \(\vec v \cdot \vec u = v^1 u_1 + v^2 u_2 + v^3 u_3 + \ldots + v^n u_n\)
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{9}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{n}{vector1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}
-		\PY{n}{vector2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}
+\begin{pythoncode}
+    vector1 = np.random.random(7)
+    vector2 = np.random.random(7)
 
-		\PY{n}{scalar\PYZus{}product} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{vector1}\PY{p}{,} \PY{n}{vector2}\PY{p}{)}
+    scalar_product = np.dot(vector1, vector2)
 
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Скалярний добуток векторів:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{scalar\PYZus{}product}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    print("Скалярний добуток векторів:", scalar_product)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Скалярний добуток векторів: 1.8680632685208063
-\end{Verbatim}
+\end{out}
 
-\section{\texorpdfstring{Створіть дві матриці розміром
-		\(2\times2\) та \(2\times3\), заповніть їх випадковими цілими числами в
-		діапазоні від \(1\) до \(10\) та перемножте їх між
-		собою.}{Створіть дві матриці розміром 2\textbackslash times2 та 2\textbackslash times3, заповніть їх випадковими цілими числами в діапазоні від 1 до 10 та перемножте їх між собою.}}
+\section{Створіть дві матриці розміром 2x2 та 2x3, заповніть їх випадковими цілими числами в діапазоні від 1 до 10 та перемножте їх між собою.}
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{10}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{n}{matrix1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
-		\PY{n}{matrix2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\begin{pythoncode}
+    matrix1 = np.random.randint(1, 11, (2, 2))
+    matrix2 = np.random.randint(1, 11, (2, 3))
 
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Матриця 1:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix1}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Матриця 2:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix2}\PY{p}{)}
+    print("Матриця 1:")
+    print(matrix1)
+    print("Матриця 2:")
+    print(matrix2)
 
-		\PY{n}{result} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{matrix1}\PY{p}{,} \PY{n}{matrix2}\PY{p}{)}
+    result = np.dot(matrix1, matrix2)
 
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Результат множення:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{result}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    print("Результат множення:")
+    print(result)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Матриця 1:
 	[[ 8  6]
-		[10  4]]
+	 [10  4]]
 	Матриця 2:
 	[[ 7 10  4]
-		[ 6 10  7]]
+	 [ 6 10  7]]
 	Результат множення:
 	[[ 92 140  74]
-		[ 94 140  68]]
-\end{Verbatim}
+	 [ 94 140  68]]
+\end{out}
 
-\section{\texorpdfstring{Створіть матрицю розміром \(3\times3\),
-		заповніть її випадковими цілими числами в діапазоні від 1 до 10 та
-		знайдіть її обернену
-		матрицю.}{Створіть матрицю розміром 3\textbackslash times3, заповніть її випадковими цілими числами в діапазоні від 1 до 10 та знайдіть її обернену матрицю.}}
+\section{Створіть матрицю розміром 3x3, заповніть її випадковими цілими числами в діапазоні від 1 до 10 та знайдіть її обернену матрицю.}
 
-Обсичлення оберненої матриці здійснюється за формулою:
+Обчислення оберненої матриці здійснюється за формулою:
 
 \[ \mathrm{A}^{-1} = \frac{1}{\mathrm{det}(\mathrm{A})} \cdot \mathrm{adj}(\mathrm{A}), \]
 
@@ -643,41 +303,38 @@ print(matrix)
 якої $ \mathrm{det}(A) = 0$ називається сингулярною, і для такої
 матриці оберненої не існує. Тому в коді ми маємо це перевірити.
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{11}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Створимо матрицю розміром 3x3 з випадковими цілими числами від 1 до 10}
-		\PY{n}{matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\begin{pythoncode}
+    # Створимо матрицю розміром 3x3 з випадковими цілими числами від 1 до 10
+    matrix = np.random.randint(1, 11, (3, 3))
 
-		\PY{c+c1}{\PYZsh{} Виведемо початкову матрицю}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Початкова матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
+    # Виведемо початкову матрицю
+    print("Початкова матриця:")
+    print(matrix)
 
-		\PY{c+c1}{\PYZsh{} Знайдемо обернену матрицю}
-		\PY{k}{try}\PY{p}{:}
-		\PY{n}{inverse\PYZus{}matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Обернена матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{inverse\PYZus{}matrix}\PY{p}{)}
-		\PY{k}{except} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{LinAlgError}\PY{p}{:}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Матриця не має оберненої матриці, оскільки вона може бути сингулярною.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    # Знайдемо обернену матрицю
+    try:
+        inverse_matrix = np.linalg.inv(matrix)
+        print("Обернена матриця:")
+        print(inverse_matrix)
+    except np.linalg.LinAlgError:
+        print("Матриця не має оберненої матриці, оскільки вона може бути сингулярною.")
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Початкова матриця:
 	[[ 2  4  6]
-		[ 7  1  1]
-		[ 5  1 10]]
+	 [ 7  1  1]
+	 [ 5  1 10]]
 	Обернена матриця:
 	[[-0.03913043  0.14782609  0.00869565]
-		[ 0.2826087   0.04347826 -0.17391304]
-		[-0.00869565 -0.07826087  0.11304348]]
-\end{Verbatim}
+	 [ 0.2826087   0.04347826 -0.17391304]
+	 [-0.00869565 -0.07826087  0.11304348]]
+\end{out}
 
-\section{Створіть матрицю розміром 4x4, заповніть її випадковими дійсними числами в діапазоні від 0 до 1 та транспонуйте її.}
+\section{Створіть матрицю розміром 4x4, заповніть її випадковими дійсними числами в діапазоні від 0 до 1 та транспонуйте її}
 
 Транспонована матриця \(\mathrm{A}^T\), виникає з матриці \(\mathrm{A}\)
-врезультаті заміни рядків на стлвбчики $(\mathrm{A}^{T})_{ji} =
+в результаті заміни рядків на стовпчики $(\mathrm{A}^{T})_{ji} =
 	\mathrm{A}_{ij} $:
 
 \[A =
@@ -698,39 +355,35 @@ print(matrix)
 	\end{bmatrix}
 \]
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{12}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{n}{matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+\begin{pythoncode}
+    matrix = np.random.rand(4, 4)
 
-		\PY{c+c1}{\PYZsh{} Виведемо початкову матрицю}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Початкова матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
+    # Виведемо початкову матрицю
+    print("Початкова матриця:")
+    print(matrix)
 
-		\PY{c+c1}{\PYZsh{} Транспонуємо матрицю}
-		\PY{n}{transposed\PYZus{}matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
+    # Транспонуємо матрицю
+    transposed_matrix = np.transpose(matrix)
 
-		\PY{c+c1}{\PYZsh{} Виведемо транспоновану матрицю}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Транспонована матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{transposed\PYZus{}matrix}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    # Виведемо транспоновану матрицю
+    print("Транспонована матриця:")
+    print(transposed_matrix)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Початкова матриця:
 	[[0.08402274 0.07052606 0.94668645 0.47278038]
-		[0.65529227 0.45497744 0.38751573 0.46614788]
-		[0.57033985 0.4134212  0.46341259 0.69720946]
-		[0.15384283 0.5854396  0.90123728 0.15706181]]
+	 [0.65529227 0.45497744 0.38751573 0.46614788]
+	 [0.57033985 0.4134212  0.46341259 0.69720946]
+	 [0.15384283 0.5854396  0.90123728 0.15706181]]
 	Транспонована матриця:
 	[[0.08402274 0.65529227 0.57033985 0.15384283]
-		[0.07052606 0.45497744 0.4134212  0.5854396 ]
-		[0.94668645 0.38751573 0.46341259 0.90123728]
-		[0.47278038 0.46614788 0.69720946 0.15706181]]
-\end{Verbatim}
+	 [0.07052606 0.45497744 0.4134212  0.5854396 ]
+	 [0.94668645 0.38751573 0.46341259 0.90123728]
+	 [0.47278038 0.46614788 0.69720946 0.15706181]]
+\end{out}
 
-\section{\texorpdfstring{Створіть матрицю розміром \(3\times4\) та вектор розміром 4, заповніть їх випадковими цілими числами в діапазоні від 1 до 10 та перемножте матрицю на
-		вектор.}{Створіть матрицю розміром 3\textbackslash times4 та вектор розміром 4, заповніть їх випадковими цілими числами в діапазоні від 1 до 10 та перемножте матрицю на вектор.}}
+\section{Створіть матрицю розміром 3x4 та вектор розміром 4, заповніть їх випадковими цілими числами в діапазоні від 1 до 10 та перемножте матрицю на вектор.}
 \[
 	\mathbf{u} = \mathrm{A} \cdot \mathbf{v} =
 	\begin{bmatrix}
@@ -751,84 +404,72 @@ print(matrix)
 	\end{bmatrix}
 \]
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{13}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Створимо матрицю розміром 3x4 з випадковими цілими числами від 1 до 10}
-		\PY{n}{matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\begin{pythoncode}
+    # Створимо матрицю розміром 3x4 з випадковими цілими числами від 1 до 10
+    matrix = np.random.randint(1, 11, (3, 4))
 
-		\PY{c+c1}{\PYZsh{} Створимо вектор розміром 4 з випадковими цілими числами від 1 до 10}
-		\PY{n}{vector} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+    # Створимо вектор розміром 4 з випадковими цілими числами від 1 до 10
+    vector = np.random.randint(1, 11, 4)
 
-		\PY{c+c1}{\PYZsh{} Виведемо матрицю і вектор}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Вектор:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{vector}\PY{p}{)}
+    # Виведемо матрицю і вектор
+    print("Матриця:")
+    print(matrix)
+    print("Вектор:")
+    print(vector)
 
-		\PY{c+c1}{\PYZsh{} Перемножимо матрицю на вектор}
-		\PY{n}{result} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{matrix}\PY{p}{,} \PY{n}{vector}\PY{p}{)}
+    # Перемножимо матрицю на вектор
+    result = np.dot(matrix, vector)
 
-		\PY{c+c1}{\PYZsh{} Виведемо результат}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Результат перемноження:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{result}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    # Виведемо результат
+    print("Результат перемноження:")
+    print(result)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Матриця:
 	[[5 3 6 2]
-		[7 2 7 7]
-		[5 9 5 7]]
+	 [7 2 7 7]
+	 [5 9 5 7]]
 	Вектор:
 	[ 8  3 10  9]
 	Результат перемноження:
 	[127 195 180]
-\end{Verbatim}
+\end{out}
 
-\section{\texorpdfstring{Створіть матрицю розміром \(2\times3\)
-		та вектор розміром 3, заповніть їх випадковими дійсними числами в
-		діапазоні від 0 до 1 та перемножте матрицю на
-		вектор.}{Створіть матрицю розміром 2\textbackslash times3 та вектор розміром 3, заповніть їх випадковими дійсними числами в діапазоні від 0 до 1 та перемножте матрицю на вектор.}}\label{ux441ux442ux432ux43eux440ux456ux442ux44c-ux43cux430ux442ux440ux438ux446ux44e-ux440ux43eux437ux43cux456ux440ux43eux43c-2times3-ux442ux430-ux432ux435ux43aux442ux43eux440-ux440ux43eux437ux43cux456ux440ux43eux43c-3-ux437ux430ux43fux43eux432ux43dux456ux442ux44c-ux457ux445-ux432ux438ux43fux430ux434ux43aux43eux432ux438ux43cux438-ux434ux456ux439ux441ux43dux438ux43cux438-ux447ux438ux441ux43bux430ux43cux438-ux432-ux434ux456ux430ux43fux430ux437ux43eux43dux456-ux432ux456ux434-0-ux434ux43e-1-ux442ux430-ux43fux435ux440ux435ux43cux43dux43eux436ux442ux435-ux43cux430ux442ux440ux438ux446ux44e-ux43dux430-ux432ux435ux43aux442ux43eux440.}
+\section{Створіть матрицю розміром 2x3 та вектор розміром 3, заповніть їх випадковими дійсними числами в діапазоні від 0 до 1 та перемножте матрицю на вектор.}
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{14}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Створимо матрицю розміром 2x3 з випадковими дійсними числами від 0 до 1}
-		\PY{n}{matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+\begin{pythoncode}
+    # Створимо матрицю розміром 2x3 з випадковими дійсними числами від 0 до 1
+    matrix = np.random.rand(2, 3)
 
-		\PY{c+c1}{\PYZsh{} Створимо вектор розміром 3 з випадковими дійсними числами від 0 до 1}
-		\PY{n}{vector} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
+    # Створимо вектор розміром 3 з випадковими дійсними числами від 0 до 1
+    vector = np.random.rand(3)
 
-		\PY{c+c1}{\PYZsh{} Виведемо матрицю і вектор}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Вектор:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{vector}\PY{p}{)}
+    # Виведемо матрицю і вектор
+    print("Матриця:")
+    print(matrix)
+    print("Вектор:")
+    print(vector)
 
-		\PY{c+c1}{\PYZsh{} Перемножимо матрицю на вектор}
-		\PY{n}{result} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{matrix}\PY{p}{,} \PY{n}{vector}\PY{p}{)}
+    # Перемножимо матрицю на вектор
+    result = np.dot(matrix, vector)
 
-		\PY{c+c1}{\PYZsh{} Виведемо результат}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Результат перемноження:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{result}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    # Виведемо результат
+    print("Результат перемноження:")
+    print(result)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
-	Матриця:
-	[[0.40142629 0.24681107 0.41057536]
-		[0.72516117 0.91335118 0.68146542]]
-	Вектор:
-	[0.3660769  0.20024095 0.43328539]
-	Результат перемноження:
-	[0.37427088 0.74362408]
-\end{Verbatim}
+\begin{out}
+    Матриця:
+    [[0.40142629 0.24681107 0.41057536]
+     [0.72516117 0.91335118 0.68146542]]
+    Вектор:
+    [0.3660769  0.20024095 0.43328539]
+    Результат перемноження:
+    [0.37427088 0.74362408]
+\end{out}
 
-\section{Створіть дві матриці розміром 2x2, заповніть їх
-	випадковими цілими числами в діапазоні від 1 до 10 та виконайте їхнє
-	поелементне
-	множення.}
+\section{Створіть дві матриці розміром 2x2, заповніть їх 	випадковими цілими числами в діапазоні від 1 до 10 та виконайте їхнє 	поелементне 	множення.}
 
 Поелементне множення двох матриць визначається так: результатом цієї
 операції є нова матриця, у якій кожний елемент результуючої матриці
@@ -850,117 +491,102 @@ print(matrix)
 оскільки в останньому випадку обчислюється добуток рядків однієї матриці
 на стовпці іншої матриці, що веде до іншої результуючої матриці.
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{15}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Створимо першу матрицю 2x2 з випадковими цілими числами в діапазоні від 1 до 10}
-		\PY{n}{matrix1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\begin{pythoncode}
+    # Створимо першу матрицю 2x2 з випадковими цілими числами в діапазоні від 1 до 10
+    matrix1 = np.random.randint(1, 11, (2, 2))
 
-		\PY{c+c1}{\PYZsh{} Створимо другу матрицю 2x2 з випадковими цілими числами в діапазоні від 1 до 10}
-		\PY{n}{matrix2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+    # Створимо другу матрицю 2x2 з випадковими цілими числами в діапазоні від 1 до 10
+    matrix2 = np.random.randint(1, 11, (2, 2))
 
-		\PY{c+c1}{\PYZsh{} Виведемо обидві матриці}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Перша матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix1}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Друга матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix2}\PY{p}{)}
+    # Виведемо обидві матриці
+    print("Перша матриця:")
+    print(matrix1)
+    print("Друга матриця:")
+    print(matrix2)
 
-		\PY{c+c1}{\PYZsh{} Виконаємо поелементне множення матриць}
-		\PY{n}{result} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{matrix1}\PY{p}{,} \PY{n}{matrix2}\PY{p}{)}
+    # Виконаємо поелементне множення матриць
+    result = np.multiply(matrix1, matrix2)
 
-		\PY{c+c1}{\PYZsh{} Виведемо результат}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Результат поелементного множення:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{result}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    # Виведемо результат
+    print("Результат поелементного множення:")
+    print(result)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Перша матриця:
 	[[5 7]
-		[1 2]]
+	 [1 2]]
 	Друга матриця:
 	[[ 7 10]
-		[ 3  9]]
+	 [ 3  9]]
 	Результат поелементного множення:
 	[[35 70]
-		[ 3 18]]
-\end{Verbatim}
+	 [ 3 18]]
+\end{out}
 
-\section{\texorpdfstring{Створіть дві матриці розміром
-		\(2\times 2\), заповніть їх випадковими цілими числами в діапазоні від 1
-		до 10 та знайдіть їх
-		добуток.}{Створіть дві матриці розміром 2\textbackslash times 2, заповніть їх випадковими цілими числами в діапазоні від 1 до 10 та знайдіть їх добуток.}}
+\section{Створіть дві матриці розміром 2x2, заповніть їх випадковими цілими числами в діапазоні від 1 до 10 та знайдіть їх добуток.}
 
-Добуток матриць визначаеться як:
+Добуток матриць визначаться як:
 
 \[\mathrm C_{ij} = \sum_{r=1}^m \mathrm A_{ir} \mathrm B_{rj} \;\;\; \left(i=1, 2, \ldots l;\; j=1, 2, \ldots n \right)\]
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{16}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Створимо першу матрицю 2x2 з випадковими цілими числами в діапазоні від 1 до 10}
-		\PY{n}{matrix1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\begin{pythoncode}
+    # Створимо першу матрицю 2x2 з випадковими цілими числами в діапазоні від 1 до 10
+    matrix1 = np.random.randint(1, 11, (2, 2))
 
-		\PY{c+c1}{\PYZsh{} Створимо другу матрицю 2x2 з випадковими цілими числами в діапазоні від 1 до 10}
-		\PY{n}{matrix2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+    # Створимо другу матрицю 2x2 з випадковими цілими числами в діапазоні від 1 до 10
+    matrix2 = np.random.randint(1, 11, (2, 2))
 
-		\PY{c+c1}{\PYZsh{} Виведемо обидві матриці}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Перша матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix1}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Друга матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix2}\PY{p}{)}
+    # Виведемо обидві матриці
+    print("Перша матриця:")
+    print(matrix1)
+    print("Друга матриця:")
+    print(matrix2)
 
-		\PY{c+c1}{\PYZsh{} Знайдемо добуток матриць}
-		\PY{n}{result} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{matrix1}\PY{p}{,} \PY{n}{matrix2}\PY{p}{)}
+    # Знайдемо добуток матриць
+    result = np.dot(matrix1, matrix2)
 
-		\PY{c+c1}{\PYZsh{} Виведемо результат}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Результат добутку матриць:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{result}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    # Виведемо результат
+    print("Результат добутку матриць:")
+    print(result)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Перша матриця:
 	[[1 3]
-		[2 5]]
+	 [2 5]]
 	Друга матриця:
 	[[7 7]
-		[2 3]]
+	 [2 3]]
 	Результат добутку матриць:
 	[[13 16]
-		[24 29]]
-\end{Verbatim}
+	 [24 29]]
+\end{out}
 
-\section{\texorpdfstring{Створіть матрицю розміром \(5\times 5\),
-		заповніть її випадковими цілими числами в діапазоні від 1 до 100 та
-		знайдіть суму елементів
-		матриці.}{Створіть матрицю розміром 5\textbackslash times 5, заповніть її випадковими цілими числами в діапазоні від 1 до 100 та знайдіть суму елементів матриці.}}
+\section{Створіть матрицю розміром 5\textbackslash times 5, заповніть її випадковими цілими числами в діапазоні від 1 до 100 та знайдіть суму елементів матриці.}
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{17}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Створимо матрицю 5x5 з випадковими цілими числами від 1 до 100}
-		\PY{n}{matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\begin{pythoncode}
+    # Створимо матрицю 5x5 з випадковими цілими числами від 1 до 100
+    matrix = np.random.randint(1, 101, (5, 5))
 
-		\PY{c+c1}{\PYZsh{} Виведемо матрицю}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
+    # Виведемо матрицю
+    print("Матриця:")
+    print(matrix)
 
-		\PY{c+c1}{\PYZsh{} Знайдемо суму елементів матриці}
-		\PY{n}{sum\PYZus{}of\PYZus{}elements} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
+    # Знайдемо суму елементів матриці
+    sum_of_elements = np.sum(matrix)
 
-		\PY{c+c1}{\PYZsh{} Виведемо суму}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Сума елементів матриці: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{sum\PYZus{}of\PYZus{}elements}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    # Виведемо суму
+    print("Сума елементів матриці: ", sum_of_elements)
+\end{pythoncode}
 
 \begin{Verbatim}[commandchars=\\\{\}]
 	Матриця:
 	[[ 65  54  46 100  89]
-		[ 19  41  79  28  70]
-		[ 73  27  94  20  94]
-		[ 46  35  18  68  27]
-		[ 36  63  33  76   7]]
+	 [ 19  41  79  28  70]
+	 [ 73  27  94  20  94]
+	 [ 46  35  18  68  27]
+	 [ 36  63  33  76   7]]
 	Сума елементів матриці:  1308
 \end{Verbatim}
 
@@ -974,147 +600,125 @@ print(matrix)
 всіх відповідних елементів матриць \(\mathrm A\) і \(\mathrm B\), тобто
 фактичноце полементне віднімання.
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{18}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Створимо першу матрицю 4x4 з випадковими цілими числами від 1 до 10}
-		\PY{n}{matrix1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\begin{pythoncode}
+    # Створимо першу матрицю 4x4 з випадковими цілими числами від 1 до 10
+    matrix1 = np.random.randint(1, 11, (4, 4))
 
-		\PY{c+c1}{\PYZsh{} Створимо другу матрицю 4x4 з випадковими цілими числами від 1 до 10}
-		\PY{n}{matrix2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+    # Створимо другу матрицю 4x4 з випадковими цілими числами від 1 до 10
+    matrix2 = np.random.randint(1, 11, (4, 4))
 
-		\PY{c+c1}{\PYZsh{} Виведемо обидві матриці}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Перша матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix1}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Друга матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix2}\PY{p}{)}
+    # Виведемо обидві матриці
+    print("Перша матриця:")
+    print(matrix1)
+    print("Друга матриця:")
+    print(matrix2)
 
-		\PY{c+c1}{\PYZsh{} Знайдемо різницю матриць}
-		\PY{n}{result} \PY{o}{=} \PY{n}{matrix1} \PY{o}{\PYZhy{}} \PY{n}{matrix2}
+    # Знайдемо різницю матриць
+    result = matrix1 - matrix2
 
-		\PY{c+c1}{\PYZsh{} Виведемо результат}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Різниця матриць:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{result}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    # Виведемо результат
+    print("Різниця матриць:")
+    print(result)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Перша матриця:
 	[[ 6  4 10  4]
-		[ 6  3  7 10]
-		[ 5  9  6  4]
-		[ 5  9 10  5]]
+	 [ 6  3  7 10]
+	 [ 5  9  6  4]
+	 [ 5  9 10  5]]
 	Друга матриця:
 	[[6 6 4 2]
-		[6 1 2 8]
-		[2 9 1 5]
-		[5 3 5 5]]
+	 [6 1 2 8]
+	 [2 9 1 5]
+	 [5 3 5 5]]
 	Різниця матриць:
 	[[ 0 -2  6  2]
-		[ 0  2  5  2]
-		[ 3  0  5 -1]
-		[ 0  6  5  0]]
-\end{Verbatim}
+	 [ 0  2  5  2]
+	 [ 3  0  5 -1]
+	 [ 0  6  5  0]]
+\end{out}
 
-\section{\texorpdfstring{Створіть матрицю розміром \(3\times 3\),
-		заповніть її випадковими дійсними числами в діапазоні від 0 до 1 та
-		знайдіть вектор-стовпчик, що містить суму елементів кожного рядка
-		матриці.}{Створіть матрицю розміром 3\textbackslash times 3, заповніть її випадковими дійсними числами в діапазоні від 0 до 1 та знайдіть вектор-стовпчик, що містить суму елементів кожного рядка матриці.}}
+\section{Створіть матрицю розміром 3x3, заповніть її випадковими дійсними числами в діапазоні від 0 до 1 та знайдіть вектор-стовпчик, що містить суму елементів кожного рядка матриці.}
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{19}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Створимо матрицю 3x3 з випадковими дійсними числами в діапазоні від 0 до 1}
-		\PY{n}{matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+\begin{pythoncode}
+    # Створимо матрицю 3x3 з випадковими дійсними числами в діапазоні від 0 до 1
+    matrix = np.random.rand(3, 3)
 
-		\PY{c+c1}{\PYZsh{} Виведемо матрицю}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
+    # Виведемо матрицю
+    print("Матриця:")
+    print(matrix)
 
-		\PY{c+c1}{\PYZsh{} Знайдемо суму елементів кожного рядка матриці та створимо вектор\PYZhy{}стовпчик}
-		\PY{n}{sum\PYZus{}of\PYZus{}rows} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{matrix}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{keepdims}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+    # Знайдемо суму елементів кожного рядка матриці та створимо вектор-стовпчик
+    sum_of_rows = np.sum(matrix, axis=1, keepdims=True)
 
-		\PY{c+c1}{\PYZsh{} Виведемо вектор\PYZhy{}стовпчик із сумами}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Вектор\PYZhy{}стовпчик із сумами рядків:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{sum\PYZus{}of\PYZus{}rows}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    # Виведемо вектор-стовпчик із сумами
+    print("Вектор-стовпчик із сумами рядків:")
+    print(sum_of_rows)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Матриця:
 	[[0.01297979 0.47161382 0.59052176]
-		[0.55785916 0.35450255 0.41946586]
-		[0.67527101 0.41623059 0.6897199 ]]
+	 [0.55785916 0.35450255 0.41946586]
+	 [0.67527101 0.41623059 0.6897199 ]]
 	Вектор-стовпчик із сумами рядків:
 	[[1.07511538]
-		[1.33182756]
-		[1.78122151]]
-\end{Verbatim}
+	 [1.33182756]
+	 [1.78122151]]
+\end{out}
 
-\section{\texorpdfstring{Створіть матрицю розміром \(3\times4\) з
-		довільними цілими числами і створінь матрицю з квадратами цих
-		чисел.}{Створіть матрицю розміром 3\textbackslash times4 з довільними цілими числами і створінь матрицю з квадратами цих чисел.}}
+\section{Створіть матрицю розміром 3x4 з довільними цілими числами і створінь матрицю з квадратами цих чисел.}
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{20}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Створимо матрицю 3x4 з довільними цілими числами (від \PYZhy{}10 до 10)}
-		\PY{n}{matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\begin{pythoncode}
+# Створимо матрицю 3x4 з довільними цілими числами (від -10 до 10)
+matrix = np.random.randint(-10, 11, (3, 4))
 
-		\PY{c+c1}{\PYZsh{} Виведемо початкову матрицю}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Початкова матриця:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
+# Виведемо початкову матрицю
+print("Початкова матриця:")
+print(matrix)
 
-		\PY{c+c1}{\PYZsh{} Знайдемо матрицю з квадратами чисел}
-		\PY{n}{squared\PYZus{}matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{matrix}\PY{p}{)}
+# Знайдемо матрицю з квадратами чисел
+squared_matrix = np.square(matrix)
 
-		\PY{c+c1}{\PYZsh{} Виведемо матрицю з квадратами чисел}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Матриця з квадратами чисел:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-		\PY{n+nb}{print}\PY{p}{(}\PY{n}{squared\PYZus{}matrix}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+# Виведемо матрицю з квадратами чисел
+print("Матриця з квадратами чисел:")
+print(squared_matrix)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Початкова матриця:
 	[[-7 -9 -5  3]
-		[-2 -8 -6 10]
-		[-1  2 -6  9]]
+	 [-2 -8 -6 10]
+	 [-1  2 -6  9]]
 	Матриця з квадратами чисел:
 	[[ 49  81  25   9]
-		[  4  64  36 100]
-		[  1   4  36  81]]
-\end{Verbatim}
+	 [  4  64  36 100]
+	 [  1   4  36  81]]
+\end{out}
 
-\section{Створіть вектор розміром 4, заповніть його випадковими
-	цілими числами в діапазоні від 1 до 50 та знайдіть вектор з квадратними
-	коренями цих
-	чисел.}
+\section{Створіть вектор розміром 4, заповніть його випадковими цілими числами в діапазоні від 1 до 50 та знайдіть вектор з квадратними коренями цих чисел}
 
-\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-	\prompt{In}{incolor}{21}{\boxspacing}
-	\begin{Verbatim}[commandchars=\\\{\}]
-		\PY{c+c1}{\PYZsh{} Створимо вектор розміром 4 з випадковими цілими числами від 1 до 50}
-		\PY{n}{vector} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{51}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+\begin{pythoncode}
+    # Створимо вектор розміром 4 з випадковими цілими числами від 1 до 50
+    vector = np.random.randint(1, 51, 4)
 
-		\PY{c+c1}{\PYZsh{} Виведемо початковий вектор}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Початковий вектор:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{vector}\PY{p}{)}
+    # Виведемо початковий вектор
+    print("Початковий вектор:", vector)
 
-		\PY{c+c1}{\PYZsh{} Знайдемо вектор з квадратними коренями чисел}
-		\PY{n}{sqrt\PYZus{}vector} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{vector}\PY{p}{)}
+    # Знайдемо вектор з квадратними коренями чисел
+    sqrt_vector = np.sqrt(vector)
 
-		\PY{c+c1}{\PYZsh{} Виведемо вектор з квадратними коренями}
-		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Вектор з квадратними коренями чисел:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{sqrt\PYZus{}vector}\PY{p}{)}
-	\end{Verbatim}
-\end{tcolorbox}
+    # Виведемо вектор з квадратними коренями
+    print("Вектор з квадратними коренями чисел:", sqrt_vector)
+\end{pythoncode}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{out}
 	Початковий вектор: [49 12 50 11]
-	Вектор з квадратними коренями чисел: [7.         3.46410162 7.07106781
-	3.31662479]
-\end{Verbatim}
+	Вектор з квадратними коренями чисел: [7. 3.46410162 7.07106781 3.31662479]
+\end{out}
 
 
-% Add a bibliography block to the postdoc
 
 
 
