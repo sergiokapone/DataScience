@@ -86,16 +86,17 @@
     boxrule=1pt,
     pad at break*=1mm,
     colback=gray!5,
-    colframe=gray,
+    colframe=gray!50,
     enhanced,
     minted language=python,
     minted options={
         autogobble,
         fontsize=\small,
-        breaklines
+        breaklines,
+        style=emacs
     },
     overlay={
-        \node[anchor=north east, font=\ttfamily\scriptsize, color=blue] at (frame.north west) {[\the\numexpr\value{pythoncode}]:\relax};
+        \node[anchor=north east, font=\ttfamily\scriptsize, color=gray] at (frame.north west) {In [\thepythoncode]:\relax};
     },
     code={\stepcounter{pythoncode}}
 }
@@ -109,14 +110,17 @@
     size=fbox,
     boxrule=1pt,
     pad at break*=1mm,
-    colback=gray!5,
-    colframe=gray,
+    colback=white,
+    colframe=white,
     enhanced,
     minted language=python,
     minted options={
         autogobble,
         fontsize=\small,
         breaklines
+    },
+    overlay={
+        \node[anchor=north east, font=\ttfamily\scriptsize, color=gray] at (frame.north west) {Out[\thepythoncode]:\relax};
     },
 }
 
@@ -317,7 +321,7 @@ print("Результат множення:", multiplication_result)
         print("Обернена матриця:")
         print(inverse_matrix)
     except np.linalg.LinAlgError:
-        print("Матриця не має оберненої матриці, оскільки вона може бути сингулярною.")
+        print("Матриця не має оберненої матриці.")
 \end{pythoncode}
 
 \begin{out}
