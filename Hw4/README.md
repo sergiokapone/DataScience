@@ -1,0 +1,1 @@
+Потрібно виконати завдання з цього [ноутбука](https://drive.google.com/file/d/1jC_A0ukrBzXm5LKuCSuHEkLJE0TLGspN/view). Для вирішення запропонованих завдань вм також потрібно завантажити [датасет](https://drive.google.com/file/d/1-4wgz9AFXrD3tZfqHJLMhCmy4BUzAX96/view) з даними про оренду велосипедів.
