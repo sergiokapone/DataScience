@@ -1,0 +1,56 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes}
+\usepackage{amsmath}
+
+\usepackage{fontspec}
+\setsansfont{CMU Sans Serif}%{Arial}
+\setmainfont{CMU Serif}%{Times New Roman}
+\setmonofont{CMU Typewriter Text}%{Consolas}
+\defaultfontfeatures{Ligatures={TeX}}
+\usepackage[math-style=TeX]{unicode-math}
+\usepackage[english, russian, ukrainian]{babel}
+
+\begin{document}
+\begin{tikzpicture}
+  % Generate random points around cluster centers
+  \foreach \centerx/\centery in {2/2, 6/4, 4/6}
+  {
+    \foreach \i in {1,...,50}
+    {
+      \pgfmathsetmacro\x{rnd*2 + \centerx - 1}
+      \pgfmathsetmacro\y{rnd*2 + \centery - 1}
+      \filldraw[blue] (\x,\y) circle (1pt);
+
+      % Calculate distance to centroid
+      \pgfmathsetmacro\dist{sqrt((\x-\centerx)^2 + (\y-\centery)^2)}
+%      \node[font=\tiny] at (\x,\y) [above] {$\dist$};
+
+      % Color code points based on cluster
+      \ifdim \dist pt < 1.0 pt
+        \fill[red] (\x,\y) circle (1pt);
+      \else
+        \ifdim \dist pt < 2.0 pt
+          \fill[green] (\x,\y) circle (1pt);
+        \else
+          \fill[orange] (\x,\y) circle (1pt);
+        \fi
+      \fi
+    }
+  }
+
+  % Define cluster centers
+  \foreach \centerx/\centery in {2/2, 6/4, 4/6}
+    \filldraw[red] (\centerx,\centery) circle (2pt);
+
+  % Cluster labels
+  \node[align=center] at (2, 0.8) {Cluster 1};
+  \node[align=center] at (6, 2.8) {Cluster 2};
+  \node[align=center] at (4, 4.8) {Cluster 3};
+
+  % Axes
+  \draw[->] (0,0) -- (8,0) node[below] {Feature $1$};
+  \draw[->] (0,0) -- (0,7) node[above] {Feature $2$};
+\end{tikzpicture}
+\end{document}
