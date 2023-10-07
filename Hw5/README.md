@@ -1,9 +1,15 @@
-За даними акселерометра з мобільного телефону потрібно класифікувати, якою діяльністю займається людина: йде, стоїть, біжить чи йде по сходах.
+# DataScience and Machine Learning
 
-Датасет за [посиланням](https://drive.google.com/file/d/1nzrtQpfaHL0OgJ_eXzA7VuEj7XotrSWO/view?pli=1).
+Data Science is the field of collecting, processing, analyzing, and interpreting data to gain new knowledge and understanding of phenomena in a particular area. It combines methodologies, algorithms, and tools from various disciplines, including statistics, mathematics, computer science, and engineering.
 
-Треба використати алгоритми SVM та випадковий ліс з бібліотеки `scikit-learn`.
+Data Science is a key element in the modern world, where data plays an important role in decision-making, planning, and strategic development of various industries. With the development of technology and the growth of data volumes, the importance of Data Science is only increasing, so it is becoming more and more popular among specialists in various fields.
 
-В якості характеристик можна брати показники з акселерометра, проте щоб покращити результати роботи алгоритмів, спочатку можна підготувати датасет і розрахувати часові ознаки (`time domain features`). Докладно ці характеристики описані в даній [статті](https://drive.google.com/file/d/1-18YEmp0YjV3hN9iI8J1i_FWd55HFwOK/view?usp=share_link).
+# Links
 
-Порівняйте результати роботи обох алгоритмів на різних фічах та різні моделі між собою.
+1. [Computer Science Center](https://compscicenter.ru/teachers/618/)
+
+2. [Machine learning SelfEdu](https://proproprogs.ru/ml) - огляд математичних методів машинного навчання.
+
+   - [Machine learning SelfEdu Github](https://github.com/selfedu-rus/machine_learning)
+
+3. [Основы Scikit-learn](https://youtu.be/sNDW8d8eB1U) - огляд бібліотеки `scikit-learn`
