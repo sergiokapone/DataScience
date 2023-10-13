@@ -4,7 +4,7 @@ Data Science is the field of collecting, processing, analyzing, and interpreting
 
 Data Science is a key element in the modern world, where data plays an important role in decision-making, planning, and strategic development of various industries. With the development of technology and the growth of data volumes, the importance of Data Science is only increasing, so it is becoming more and more popular among specialists in various fields.
 
-# Links
+## Links
 
 1. [Computer Science Center](https://compscicenter.ru/teachers/618/)
 
@@ -19,3 +19,7 @@ Data Science is a key element in the modern world, where data plays an important
 5. [Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
 
 6. [machine learrrning](https://www.youtube.com/@machine_learrrning/videos)
+
+## GitHub Links on Machine Learning
+
+1. [Книга "Машинное обучение и анализ данных"](https://github.com/Dyakonov/MLDM_BOOK)
