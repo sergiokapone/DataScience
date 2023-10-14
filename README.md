@@ -19,3 +19,4 @@ Data Science is a key element in the modern world, where data plays an important
 1. [Книга "Машинное обучение и анализ данных"](https://github.com/Dyakonov/MLDM_BOOK)
 2. [Data science ipython notebooks](https://github.com/donnemartin/data-science-ipython-notebooks/tree/master)
 3. [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook)
+4. [Data Science Cheatsheet 2.0](https://github.com/aaronwangy/Data-Science-Cheatsheet)
