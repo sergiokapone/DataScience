@@ -381,7 +381,7 @@ $\dfrac2{\|\vec{w}\|}$, де $\|\vec{w}\|$ норма вектору вагов�
 
 Вся вищенавадена математична модель вже є реалізована у знайомій нам бібліотеці, і ви можете ознайомитись більше з різними версіями даного методу за \href{https://scikit-learn.org/stable/modules/svm.html}{посиланням}. А тут наведемо приклад використання SVM в елементарному прикладі:
 
-\begin{minted}[bgcolor=lightgray!20, fontsize=\scriptsize]{python}
+\begin{pythoncode}
 from sklearn import svm
 
 X = [[0, 0], [1, 1]]
@@ -391,12 +391,12 @@ clf = svm.SVC()
 clf.fit(X, y)
 
 print(clf.predict([[2., 2.]]))
-\end{minted}
+\end{pythoncode}
 
 
 Або більш складніший приклад:
 
-\begin{minted}[bgcolor=lightgray!20, fontsize=\scriptsize]{python}
+\begin{pythoncode}
 # Import the necessary libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -445,7 +445,7 @@ plt.xlabel('Feature 1')
 plt.ylabel('Feature 2')
 plt.title('Reference vector method (SVM)')
 plt.show()
-\end{minted}
+\end{pythoncode}
 
 
 \section*{Висновок}

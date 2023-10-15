@@ -64,9 +64,8 @@
 \RequirePackage{subcaption}
 \RequirePackage{wrapfig}
 \captionsetup[figure]{font={small},skip=0.6\baselineskip, labelsep=period, justification=centering}
-\RequirePackage{minted}
-\RequirePackage{microtype}
-\RequirePackage[many, most]{tcolorbox}
+
+\RequirePackage[many, most, minted]{tcolorbox}
 \definecolor{defblue}{RGB}{192,232,252}
 \newtcolorbox{defbox}[1]{
 	breakable,
@@ -85,6 +84,31 @@
 			\draw[line width=1.5pt,defblue] (frame.south west) -- (frame.south east);
 		}
 }
+
+\RequirePackage{minted}
+
+\newtcblisting{pythoncode}{
+    listing engine=minted,
+    listing only,
+    sharp corners,
+    breakable,
+    size=fbox,
+    boxrule=1pt,
+    pad at break*=1mm,
+    colback=gray!5,
+    colframe=gray!50,
+    enhanced,
+    minted language=python,
+    minted options={
+        autogobble,
+        fontsize=\scriptsize,
+        breaklines,
+        style=emacs
+    }
+}
+
+\RequirePackage{microtype}
+
 
 \RequirePackage[
 	colorlinks=true,
