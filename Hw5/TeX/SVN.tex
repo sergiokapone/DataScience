@@ -14,7 +14,7 @@
 \usepackage{fontspec}
 \setsansfont{CMU Sans Serif}%{Arial}
 \setmainfont{CMU Serif}%{Times New Roman}
-\setmonofont{CMU Typewriter Text}%{Consolas}
+\setmonofont{JetBrains Mono}%{Consolas}
 \defaultfontfeatures{Ligatures={TeX}}
 \usepackage[math-style=TeX]{unicode-math}
 \usepackage[english, russian, ukrainian]{babel}
@@ -465,7 +465,7 @@ $\dfrac2{\|\vec{w}\|}$, де $\|\vec{w}\|$ норма вектору вагов�
 
 Вся вищенавадена математична модель вже є реалізована у знайомій нам бібліотеці, і ви можете ознайомитись більше з різними версіями даного методу за \href{https://scikit-learn.org/stable/modules/svm.html}{посиланням}. А тут наведемо приклад використання SVM в елементарному прикладі:
 
-\begin{minted}[bgcolor=lightgray!20, fontsize=\small]{python}
+\begin{minted}[bgcolor=lightgray!20, fontsize=\scriptsize]{python}
 from sklearn import svm
 
 X = [[0, 0], [1, 1]]
@@ -480,7 +480,7 @@ print(clf.predict([[2., 2.]]))
 
 Або більш складніший приклад:
 
-\begin{minted}[bgcolor=lightgray!20, fontsize=\small]{python}
+\begin{minted}[bgcolor=lightgray!20, fontsize=\scriptsize]{python}
 # Import the necessary libraries
 import numpy as np
 import matplotlib.pyplot as plt
