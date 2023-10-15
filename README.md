@@ -1,6 +1,6 @@
 # DataScience and Machine Learning
 
-Data Science is the field of collecting, processing, analyzing, and interpreting data to gain new knowledge and understanding of phenomena in a particular area. It combines methodologies, algorithms, and tools from various disciplines, including statistics, mathematics, computer science, and engineering.
+Data Science is the field of collecting, processing, analyzing, and interpreting data to gain new knowledge and understanding of phenomena in a particular area. It combines methodologies, algorithms, and tools from various disciplines, including statigstics, mathematics, computer science, and engineering.
 
 Data Science is a key element in the modern world, where data plays an important role in decision-making, planning, and strategic development of various industries. With the development of technology and the growth of data volumes, the importance of Data Science is only increasing, so it is becoming more and more popular among specialists in various fields.
 
