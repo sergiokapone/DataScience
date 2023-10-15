@@ -135,4 +135,30 @@
 			}
 	}
 }
+
+\usetikzlibrary{shadows,shadows.blur}
+\pgfplotsset{
+    seaborn/.style={
+	xticklabel style={font=\footnotesize},
+	yticklabel style={font=\footnotesize},
+    major grid style = {white, line width=1pt},
+	legend style={opacity=0.75},
+    axis background/.style={fill=seaborn_background},
+    major tick style = {white, line width=0.8pt},
+    axis line style = {white, line width=1.3pt},
+    legend style={
+        font=\scriptsize,
+        text opacity=1,
+        % Рамка вокруг легенды
+        draw=seaborn_blue,
+        line width=1pt,
+        fill=gray!10,
+        },
+    }
+}
+
+\definecolor{seaborn_background}{RGB}{234, 234, 242}
+\definecolor{seaborn_red}{RGB}{196, 78, 82}
+\definecolor{seaborn_blue}{RGB}{76, 114, 176}
+
 \makeatother

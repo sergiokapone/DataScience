@@ -248,25 +248,23 @@ $\dfrac2{\|\vec{w}\|}$, де $\|\vec{w}\|$ норма вектору вагов�
 %	{
     \begin{tikzpicture}[trim left]
 			\begin{axis}[
+                    seaborn,
 					width=0.75\linewidth,
-					height=0.65\linewidth,
+					height=0.6\linewidth,
 					xlabel=Значення параметра,
 					ylabel=$\mathrm{Loss}$,
 					grid=both,
 					y label style={at={(axis description cs:0, 0.5)},anchor=north},
 					xtick distance = 1,
 					ytick distance = 1,
-					xticklabel style={font=\footnotesize},
-					yticklabel style={font=\footnotesize},
-					legend style={opacity=0.75},
 				]
 
 				% График для логистической регрессии
-				\addplot[color=blue,mark=none,smooth] {ln(1 + exp(-x)};
-				\addlegendentry{Логістична регресія}
+				\addplot[color=seaborn_blue,  ultra thick, mark=none,smooth] {ln(1 + exp(-x)};
+				\addlegendentry{Logistic regression}
 
 				% График для метода опорных векторов
-				\addplot[color=red,mark=none,smooth, samples=1000] {max(0, 1 - x)};
+				\addplot[color=seaborn_red, ultra thick, mark=none,smooth, samples=1000] {max(0, 1 - x)};
 				\addlegendentry{Hinge Loss}
 
 			\end{axis}
@@ -460,7 +458,7 @@ SVM (англ. Support Vector Machine) --- це метод машинного н
 
 У загальному, SVM є потужним та ефективним методом машинного навчання, який може бути застосований у багатьох різних задачах. Використання SVM може залежати від характеру даних та конкретних умов задачі, тому варто розглянути його як один з варіантів при вирішенні конкретної задачі.
 
-\clearpage
+%\clearpage
 \nocite{*}
 \printbibliography[title=Посилання]
 
