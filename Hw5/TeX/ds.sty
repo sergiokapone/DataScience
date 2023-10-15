@@ -66,7 +66,12 @@
 \captionsetup[figure]{font={small},skip=0.6\baselineskip, labelsep=period, justification=centering}
 
 \RequirePackage[many, most, minted]{tcolorbox}
-\definecolor{defblue}{RGB}{192,232,252}
+
+\definecolor{seaborn_background}{RGB}{234, 234, 242}
+\definecolor{seaborn_red}{RGB}{196, 78, 82}
+\definecolor{seaborn_blue}{RGB}{76, 114, 176}
+\definecolor{seaborn_green}{RGB}{121, 166, 71}
+
 \newtcolorbox{defbox}[1]{
 	breakable,
 	enhanced,
@@ -78,10 +83,10 @@
 	fonttitle=\bfseries\sffamily\strut,
 	coltitle=black,
 	colbacktitle=white,
-	title style={defblue},
+	title style={seaborn_background},
 	fontlower=\small,
 	overlay={
-			\draw[line width=1.5pt,defblue] (frame.south west) -- (frame.south east);
+			\draw[line width=1.5pt,seaborn_background] (frame.south west) -- (frame.south east);
 		}
 }
 
@@ -109,12 +114,11 @@
 
 \RequirePackage{microtype}
 
-
 \RequirePackage[
 	colorlinks=true,
-	urlcolor = blue,
-	linkcolor  = red!60!black,
-	citecolor  = green,
+	urlcolor = seaborn_blue,
+	linkcolor  = seaborn_red,
+	citecolor  = seaborn_green,
 	bookmarks = true,
 	bookmarksnumbered=true,
 	unicode,
@@ -157,8 +161,5 @@
     }
 }
 
-\definecolor{seaborn_background}{RGB}{234, 234, 242}
-\definecolor{seaborn_red}{RGB}{196, 78, 82}
-\definecolor{seaborn_blue}{RGB}{76, 114, 176}
 
 \makeatother

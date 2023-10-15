@@ -48,8 +48,8 @@ $n$-вимірному просторі (де $n$ --- кількість озн�
 				2.4/4.0,
 				2.6/3.3
 			} {
-                \node[circle, fill=blue, inner sep=2pt] (C\i) at (\x,\y) {};
-                \draw[->, blue] (O) -- (C\i);
+                \node[circle, fill=seaborn_blue, inner sep=2pt] (C\i) at (\x,\y) {};
+                \draw[->, seaborn_blue] (O) -- (C\i);
 			}
 
 		\foreach[count=\i] \x/\y in {
@@ -63,13 +63,13 @@ $n$-вимірному просторі (де $n$ --- кількість озн�
 				4.4/1.4,
 				4.6/2.3
 			} {
-                \node[circle, fill=green!50!black, inner sep=2pt] (C\i) at (\x,\y) {};
-                \draw[->, green!50!black] (O) -- (C\i) ;
+                \node[circle, fill=seaborn_green, inner sep=2pt] (C\i) at (\x,\y) {};
+                \draw[->, seaborn_green] (O) -- (C\i) ;
 			}
 
 
 		\begin{scope}[rotate=45]
-			\draw[red] (1, -0.1) -- ++(6,0) node[above, rotate=45, pos=0.8] {гіперплощина};
+			\draw[seaborn_red] (1, -0.1) -- ++(6,0) node[above, rotate=45, pos=0.8] {гіперплощина};
 		\end{scope}
 	\end{tikzpicture}
 
@@ -111,7 +111,7 @@ SVM може використовуватися для класифікації 
 				2.4/4.0,
 				2.6/3.3
 			} {
-				\fill[blue] (\x,\y) circle (2pt);
+				\fill[seaborn_blue] (\x,\y) circle (2pt);
 			}
 
 		\foreach \x/\y in {
@@ -125,18 +125,18 @@ SVM може використовуватися для класифікації 
 				4.4/1.4,
 				4.6/2.3
 			} {
-				\fill[green!50!black] (\x,\y) circle (2pt)
+				\fill[seaborn_green] (\x,\y) circle (2pt)
 				% node[above, font=\tiny] {(\x, \y)}
 				;
 			}
 
 
 		\begin{scope}[rotate=45]
-			\draw[dashed, blue] (1, 0.5) --  ++(6,0) node[above, rotate=45, pos=0.9] {$\vec{w} \cdot \vec{x} - b = 1$};
+			\draw[dashed, seaborn_blue] (1, 0.5) --  ++(6,0) node[above, rotate=45, pos=0.9] {$\vec{w} \cdot \vec{x} - b = 1$};
 
-			\draw[dashed, green!50!black] (1, -0.7) -- ++(6,0) node[below, rotate=45, pos=0.9] {$\vec{w} \cdot \vec{x} - b = -1$};
+			\draw[dashed, seaborn_green] (1, -0.7) -- ++(6,0) node[below, rotate=45, pos=0.9] {$\vec{w} \cdot \vec{x} - b = -1$};
 
-			\draw[red] (1, -0.1) -- ++(6,0) node[above, rotate=45, pos=0.9] {$\vec{w} \cdot \vec{x} - b = 0$};
+			\draw[seaborn_red] (1, -0.1) -- ++(6,0) node[above, rotate=45, pos=0.9] {$\vec{w} \cdot \vec{x} - b = 0$};
 
 			\draw[<->, dashed] (7.2, 0.5) -- (7.2, -0.7) node[pos=0.5,  rotate=-45, above=5pt] {$\frac2{\| \vec{w} \|}$};
 
@@ -287,11 +287,11 @@ $\dfrac2{\|\vec{w}\|}$, де $\|\vec{w}\|$ норма вектору вагов�
 %				]
 %
 %				% График для логистической регрессии
-%				\addplot[color=blue,mark=none,smooth] {ln(1 + exp(x)};
+%				\addplot[color=seaborn_blue,mark=none,smooth] {ln(1 + exp(x)};
 %				\addlegendentry{Логістична регресія}
 %
 %				% График для метода опорных векторов
-%				\addplot[color=red,mark=none,smooth, samples=1000] {max(0, 1 + x)};
+%				\addplot[color=seaborn_red,mark=none,smooth, samples=1000] {max(0, 1 + x)};
 %				\addlegendentry{SVM: $\mathrm{cost}_2$}
 %
 %			\end{axis}
@@ -317,7 +317,7 @@ $\dfrac2{\|\vec{w}\|}$, де $\|\vec{w}\|$ норма вектору вагов�
 		\foreach \i in {1,...,100} {
 				\pgfmathsetmacro{\x}{-1 + 2*rnd}
 				\pgfmathsetmacro{\y}{-1 + 2*rnd}
-				\fill[blue] (\x,\y) circle (2pt);
+				\fill[seaborn_blue] (\x,\y) circle (2pt);
 			}
 
 		% Класс 2 - внешний круг
@@ -326,7 +326,7 @@ $\dfrac2{\|\vec{w}\|}$, де $\|\vec{w}\|$ норма вектору вагов�
 				\pgfmathsetmacro{\radius}{2 + rnd*0.5}
 				\pgfmathsetmacro{\x}{\radius*cos(\angle)}
 				\pgfmathsetmacro{\y}{\radius*sin(\angle)}
-				\fill[red] (\x,\y) circle (2pt);
+				\fill[seaborn_red] (\x,\y) circle (2pt);
 			}
 
 		% Оси координат
@@ -388,7 +388,7 @@ y = [0, 1]
 clf = svm.SVC()
 clf.fit(X, y)
 
-print(clf.predict([[2., 2.]]))
+print(clf.pseaborn_redict([[2., 2.]]))
 \end{pythoncode}
 
 
@@ -407,7 +407,7 @@ X, y = datasets.make_classification(
     n_samples=100,
     n_features=2,
     n_informative=2,
-    n_redundant=0,
+    n_seaborn_redundant=0,
     n_clusters_per_class=1,
     random_state=42)
 
