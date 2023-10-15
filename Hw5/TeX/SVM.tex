@@ -32,7 +32,21 @@
 
 \renewcommand{\baselinestretch}{1.2}
 
+	\RequirePackage[backend=biber,
+		bibstyle=gost-numeric,
+		maxnames = 10,
+		babel=other,
+		isbn=true,
+		url=false,
+		defernumbers=true
+	]{biblatex}
+	\newbibmacro{string+url}[1]{%
+		\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}%
+	}
+	\DeclareFieldFormat{title}{\usebibmacro{string+url}{#1}}
+	\RequirePackage{csquotes}
 
+ \addbibresource{SVM.bib}
 \setlength{\parskip}{0.5ex}%
 \setlength{\parindent}{2.5em}%
 
@@ -544,6 +558,10 @@ SVM (англ. Support Vector Machine) --- це метод машинного н
 Однак, метод SVM може бути чутливий до викидів, тобто до даних, які значно відрізняються від інших даних у вибірці. Крім того, вибір оптимальних параметрів для SVM може бути часо- та ресурсомістким завданням.
 
 У загальному, SVM є потужним та ефективним методом машинного навчання, який може бути застосований у багатьох різних задачах. Використання SVM може залежати від характеру даних та конкретних умов задачі, тому варто розглянути його як один з варіантів при вирішенні конкретної задачі.
+
+\nocite{*}
+\printbibliography[title=Посилання]
+
 
 \end{document}
 
