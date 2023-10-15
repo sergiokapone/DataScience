@@ -4,108 +4,9 @@
 % !TeX spellcheck = uk_UA
 
 \documentclass[]{article}
-\usepackage[fontsize=14pt]{fontsize}
-\usepackage{titlesec}
-\usepackage{indentfirst}
-\titleformat{\section}[block]{\normalfont\large\bfseries}{\thesection.}{1ex}{}
-\titleformat{\subsection}[block]{\normalfont\bfseries}{\thesubsection.}{1ex}{}
+\usepackage{ds}
+\addbibresource{SVM.bib}
 
-
-\usepackage{fontspec}
-\setsansfont{CMU Sans Serif}%{Arial}
-\setmainfont{stix}%{CMU Serif}%{Times New Roman}
-\setmonofont{JetBrains Mono}%{Consolas}
-\defaultfontfeatures{Ligatures={TeX}}
-\usepackage[math-style=TeX]{unicode-math}
-\usepackage[english, russian, ukrainian]{babel}
-
-
-\usepackage[%
-	a4paper,%
-	footskip=1cm,%
-	headsep=0.3cm,%
-	top=2cm, %поле сверху
-	bottom=2cm, %поле снизу
-	left=2cm, %поле ліворуч
-	right=2cm, %поле праворуч
-    ]{geometry}
-
-\renewcommand{\baselinestretch}{1.2}
-
-	\RequirePackage[backend=biber,
-		bibstyle=gost-numeric,
-		maxnames = 10,
-		babel=other,
-		isbn=true,
-		url=false,
-		defernumbers=true
-	]{biblatex}
-	\newbibmacro{string+url}[1]{%
-		\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}%
-	}
-	\DeclareFieldFormat{title}{\usebibmacro{string+url}{#1}}
-	\RequirePackage{csquotes}
-
- \addbibresource{SVM.bib}
-\setlength{\parskip}{0.5ex}%
-\setlength{\parindent}{2.5em}%
-
-\usepackage{amsmath}
-\usepackage{enumitem}
-\setlist{nosep}
-\usepackage{tikz, pgfplots}
-\usepackage{graphicx}
-\usepackage{subcaption}
-\usepackage{wrapfig}
-\captionsetup[figure]{font={small},skip=0.6\baselineskip, labelsep=period, justification=centering}
-\usepackage{minted}
-\usepackage{microtype}
-\usepackage[many, most]{tcolorbox}
-\definecolor{defblue}{RGB}{192,232,252}
-\newtcolorbox{defbox}[1]{
-  breakable,
-  enhanced,
-  colback=white,
-  boxrule=0pt,
-  arc=0pt,
-  outer arc=0pt,
-  title=#1,
-  fonttitle=\bfseries\sffamily\strut,
-  coltitle=black,
-  colbacktitle=white,
-  title style={defblue},
-  fontlower=\small,
-  overlay={
-    \draw[line width=1.5pt,defblue] (frame.south west) -- (frame.south east);
-  }
-}
-
-\usepackage[
-    colorlinks=true,
-	urlcolor = blue,
-	linkcolor  = red!60!black,
-	citecolor  = green,
-	bookmarks = true,
-	bookmarksnumbered=true,
-	unicode,
-	linktoc = all,
-	hypertexnames=false,
-	pdftoolbar=false,
-	pdfpagelayout=TwoPageRight,
-	pdfauthor={Ponomarenko S.M. aka sergiokapone},
-	pdfdisplaydoctitle=true,
-	pdfencoding=auto
-	]%
-	{hyperref}
-		\makeatletter
-	\AtBeginDocument{
-	\hypersetup{
-		pdfinfo={
-		Title={\@title},
-		}
-	}
-	}
-	\makeatother
 
 \title{\sffamily\bfseries Метод опорних векторів}
 \author{}
@@ -476,7 +377,7 @@ $\dfrac2{\|\vec{w}\|}$, де $\|\vec{w}\|$ норма вектору вагов�
 
 Отже тепер ми маємо замість вектора $\vec{x}^{(i)} \in \mathbb{R}^n$ новий $f^{(i)} \in \mathbb{R}^m$. І тепер будемо використовувати нові ознаки і в новому просторі шукати розподільчу смугу і максимізувати її ширину.
 
-\section{Реалізація методу опорних векторів у бібліотеці \texttt{scikit-learn}}
+\section{Реалізація методу SVM у бібліотеці \texttt{scikit-learn}}
 
 Вся вищенавадена математична модель вже є реалізована у знайомій нам бібліотеці, і ви можете ознайомитись більше з різними версіями даного методу за \href{https://scikit-learn.org/stable/modules/svm.html}{посиланням}. А тут наведемо приклад використання SVM в елементарному прикладі:
 
@@ -559,6 +460,7 @@ SVM (англ. Support Vector Machine) --- це метод машинного н
 
 У загальному, SVM є потужним та ефективним методом машинного навчання, який може бути застосований у багатьох різних задачах. Використання SVM може залежати від характеру даних та конкретних умов задачі, тому варто розглянути його як один з варіантів при вирішенні конкретної задачі.
 
+\clearpage
 \nocite{*}
 \printbibliography[title=Посилання]
 

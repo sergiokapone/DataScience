@@ -1,0 +1,114 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{ds}[2023/10/15]
+
+\RequirePackage[fontsize=14pt]{fontsize}
+\RequirePackage{indentfirst}
+
+%\RequirePackage{titlesec}
+%\titleformat{\section}[block]{\normalfont\large\bfseries}{\thesection.}{1ex}{}
+
+\usepackage[calcwidth]{titlesec}
+
+\titleformat{\section}[block]{\normalfont\large\bfseries\sffamily}
+{\color{red!60!black}\S\,\thesection.}{0.5em}{\color{black}}
+
+\titleformat{\subsection}[block]{\normalfont\bfseries\sffamily}{\thesubsection.}{1ex}{}
+
+\titlespacing{\section}{0ex}{4ex}{2ex}
+
+
+\RequirePackage{fontspec}
+\setsansfont{CMU Sans Serif}%{Arial}
+\setmainfont{stix}%{CMU Serif}%{Times New Roman}
+\setmonofont{JetBrains Mono}%{Consolas}
+\defaultfontfeatures{Ligatures={TeX}}
+\RequirePackage[math-style=TeX]{unicode-math}
+\RequirePackage[english, russian, ukrainian]{babel}
+
+
+\RequirePackage[%
+	a4paper,%
+	footskip=1cm,%
+	headsep=0.3cm,%
+	top=2cm, %поле сверху
+	bottom=2cm, %поле снизу
+	left=2cm, %поле ліворуч
+	right=2cm, %поле праворуч
+]{geometry}
+
+\renewcommand{\baselinestretch}{1.2}
+
+\RequirePackage[backend=biber,
+	bibstyle=gost-numeric,
+	maxnames = 10,
+	babel=other,
+	isbn=true,
+	url=false,
+	defernumbers=true
+]{biblatex}
+\newbibmacro{string+url}[1]{%
+	\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}%
+}
+\DeclareFieldFormat{title}{\usebibmacro{string+url}{#1}}
+\RequirePackage{csquotes}
+
+\addbibresource{SVM.bib}
+\setlength{\parskip}{0.5ex}%
+\setlength{\parindent}{2.5em}%
+
+\RequirePackage{amsmath}
+\RequirePackage{enumitem}
+\setlist{nosep}
+\RequirePackage{tikz, pgfplots}
+\RequirePackage{graphicx}
+\RequirePackage{subcaption}
+\RequirePackage{wrapfig}
+\captionsetup[figure]{font={small},skip=0.6\baselineskip, labelsep=period, justification=centering}
+\RequirePackage{minted}
+\RequirePackage{microtype}
+\RequirePackage[many, most]{tcolorbox}
+\definecolor{defblue}{RGB}{192,232,252}
+\newtcolorbox{defbox}[1]{
+	breakable,
+	enhanced,
+	colback=white,
+	boxrule=0pt,
+	arc=0pt,
+	outer arc=0pt,
+	title=#1,
+	fonttitle=\bfseries\sffamily\strut,
+	coltitle=black,
+	colbacktitle=white,
+	title style={defblue},
+	fontlower=\small,
+	overlay={
+			\draw[line width=1.5pt,defblue] (frame.south west) -- (frame.south east);
+		}
+}
+
+\RequirePackage[
+	colorlinks=true,
+	urlcolor = blue,
+	linkcolor  = red!60!black,
+	citecolor  = green,
+	bookmarks = true,
+	bookmarksnumbered=true,
+	unicode,
+	linktoc = all,
+	hypertexnames=false,
+	pdftoolbar=false,
+	pdfpagelayout=TwoPageRight,
+	pdfauthor={Ponomarenko S.M. aka sergiokapone},
+	pdfdisplaydoctitle=true,
+	pdfencoding=auto
+]%
+{hyperref}
+\makeatletter
+\AtBeginDocument{
+	\hypersetup{
+		pdfinfo={
+				Title={\@title},
+			}
+	}
+}
+\makeatother
