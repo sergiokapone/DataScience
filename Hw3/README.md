@@ -1,4 +1,5 @@
 ![scikit-learn](https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png)
+
 # Класичне машинне навчання
 
 ## Домашнє завдання
