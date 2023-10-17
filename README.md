@@ -14,7 +14,7 @@ Data Science is a key element in the modern world, where data plays an important
 5. [Основы Scikit-learn](https://youtu.be/sNDW8d8eB1U) - library overview `scikit-learn`
 6. [Мини-лекции для подготовки к собеседованиям](https://www.youtube.com/playlist?list=PLOKb3HTyuVMC0-NAlngaHJou7IjECakUI)
 7. [Хирьянов Т. Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
-8. [Юля, machine learrrning](https://www.youtube.com/@machine_learrrning/videos)
+8. [Юлия Пономарева, machine learrrning](https://www.youtube.com/@machine_learrrning/videos)
 9. [Машинное обучение в физике](https://www.youtube.com/playlist?list=PLcsjsqLLSfNDi6JXY5GYYXLC7sUZ_ZH1o)
 10. [Computer Science Center](https://compscicenter.ru/teachers/618/)
 11. [Kashnitsky Yury, OpenDataScience по машинному обучению](https://www.youtube.com/playlist?list=PLVlY_7IJCMJdgcCtQfzj5j8OVB_Y0GJCl)
