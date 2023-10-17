@@ -1,8 +1,11 @@
-# Завдання
+
+# Класифікація та оцінка роботи моделі
+
+## Завдання
 
 Потрібно виконати завдання з цього [ноутбука](https://drive.google.com/file/d/1jC_A0ukrBzXm5LKuCSuHEkLJE0TLGspN/view). Для вирішення запропонованих завдань вм також потрібно завантажити [датасет](https://drive.google.com/file/d/1-4wgz9AFXrD3tZfqHJLMhCmy4BUzAX96/view) з даними про оренду велосипедів.
 
-# Посилання
+## links
 
 1. [Метрики классификации](https://www.youtube.com/playlist?list=PLkJJmZ1EJno6CLyvD4DHc32Fed6cPBHje)
    - [Ссылка на ноутбук 1: ACCURACY | МЕТРИКИ КЛАССИФИКАЦИИ В МАШИННОМ ОБУЧЕНИИ](https://colab.research.google.com/drive/1RSIGFmdzTLYEPCcZUWcWvO9-UW23Bm-K)

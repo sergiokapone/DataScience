@@ -1,10 +1,14 @@
-# DataScience and Machine Learning
+# Інші алгоритми навчання з учителем
 
-Data Science is the field of collecting, processing, analyzing, and interpreting data to gain new knowledge and understanding of phenomena in a particular area. It combines methodologies, algorithms, and tools from various disciplines, including statistics, mathematics, computer science, and engineering.
+## Домашнє завдання
 
-Data Science is a key element in the modern world, where data plays an important role in decision-making, planning, and strategic development of various industries. With the development of technology and the growth of data volumes, the importance of Data Science is only increasing, so it is becoming more and more popular among specialists in various fields.
+В домашньому завданні до даного модулю ви потренуєтесь робити тестове завдання для влаштування на роботу. За даними акселерометра з мобільного телефону потрібно класифікувати, якою діяльністю займається людина: йде, стоїть, біжить чи йде по сходах. Знайти датасет ви можете за [посиланням](https://drive.google.com/file/d/1nzrtQpfaHL0OgJ_eXzA7VuEj7XotrSWO/view?usp=share_link).
 
-# Links
+Використайте алгоритми SVM та випадковий ліс з бібліотеки scikit-learn. Як характеристики можете брати показники з акселерометра, проте щоб покращити результати роботи алгоритмів, спочатку можна підготувати наш датасет і розрахувати часові ознаки (time domain features). Більше ці характеристики описані в даній [статті](https://drive.google.com/file/d/1-18YEmp0YjV3hN9iI8J1i_FWd55HFwOK/view?usp=share_link).
+
+Порівняйте результати роботи обох алгоритмів на різних фічах та різні моделі між собою.
+
+## Links
 
 1. [Computer Science Center](https://compscicenter.ru/teachers/618/)
 
