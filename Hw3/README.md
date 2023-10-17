@@ -31,3 +31,4 @@
 5. [Регуляризация простыми словами | L1, L2, Elastic Net | Lasso, Ridge](https://www.youtube.com/watch?v=4WcHxtYy3_8&ab_channel=machinelearrrning)
 6. [Регуляризация в Sklearn | L1, L2, Elastic Net | Lasso, Ridge, LogisticRegression](https://www.youtube.com/watch?v=UJKNdyJpyug&ab_channel=machinelearrrning)
    - [Ссылка на google colab](https://colab.research.google.com/drive/1l6FqsdCphePcGx3-t3zXiDLVOjb40WG7)
+7. [Pandas Tutorial (W3 School)](https://www.w3schools.com/python/pandas/default.asp)
