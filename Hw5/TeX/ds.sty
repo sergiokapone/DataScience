@@ -91,11 +91,37 @@
 	title=#1,
 	fonttitle=\bfseries\sffamily\strut,
 	coltitle=black,
-	colbacktitle=white,
 	title style={seaborn_background},
 	fontlower=\small,
-	overlay={
+   	overlay unbroken={
+   			\draw[line width=1.5pt,seaborn_background] (frame.south west) -- (frame.south east);
+   		},
+	overlay last={
 			\draw[line width=1.5pt,seaborn_background] (frame.south west) -- (frame.south east);
+		}
+}
+
+\newtcolorbox{mathbox}[1]{
+	breakable,
+	enhanced,
+	colback=white,
+	boxrule=0pt,
+	arc=0pt,
+	outer arc=0pt,
+	adjusted title=#1,
+    halign title=center,
+    parbox=false,
+	fonttitle=\bfseries\sffamily\strut,
+	coltitle=white,
+	colback=seaborn_red!10,
+	title style={seaborn_red},
+	fontupper=\small,
+%    fontlower=\Large
+   	overlay unbroken={
+   			\draw[line width=1.5pt,seaborn_red] (frame.south west) -- (frame.south east);
+   		},
+	overlay last={
+			\draw[line width=1.5pt,seaborn_red] (frame.south west) -- (frame.south east);
 		}
 }
 
