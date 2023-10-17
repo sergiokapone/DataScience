@@ -20,7 +20,7 @@
      - [Навчання моделей](https://www.tensorflow.org/guide/basic_training_loops?hl=ru)
      - [Обчислювальні графи](https://www.tensorflow.org/guide/intro_to_graphs?hl=ru)
      - [Корисні приклади](https://github.com/tensorflow/docs)
-2. Глубокое обучение Погружение в мир нейронных сетей (2018) Автори: С. Николенко, А. Кадурин, Е. Архангельская
+2. [Глубокое обучение Погружение в мир нейронных сетей](https://bit.ly/3QkpYhY) (2018) Автори: С. Николенко, А. Кадурин, Е. Архангельская
 3. [Візуалізатор](https://playground.tensorflow.org) навчання нейронних мереж.
 4. [Юлия Пономарева, Введение в нейронные сети на Keras и Tensorflow](https://www.youtube.com/playlist?list=PLkJJmZ1EJno4lRvtQjQrNNACpeMLOd-SD)
    - [Ссылка на colab 2: Первая нейронная сеть на Keras](https://colab.research.google.com/drive/17r4PWvtLgAoPgx34wplkbEPl1AsaqK3S)
