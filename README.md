@@ -18,6 +18,11 @@ Data Science is a key element in the modern world, where data plays an important
 9. [Машинное обучение в физике](https://www.youtube.com/playlist?list=PLcsjsqLLSfNDi6JXY5GYYXLC7sUZ_ZH1o)
 10. [Computer Science Center](https://compscicenter.ru/teachers/618/)
 11. [Kashnitsky Yury, OpenDataScience по машинному обучению](https://www.youtube.com/playlist?list=PLVlY_7IJCMJdgcCtQfzj5j8OVB_Y0GJCl)
+12. [Sergey Nikolenko, СПбГУ - 2020-2021 - Машинное обучение](https://www.youtube.com/playlist?list=PLwdBkWbW0oHEUmY07a0G5jabP_fWfGQet)
+13. [Лекторий ФПМИ, Машинное обучение, 2020. Часть 1.](https://www.youtube.com/playlist?list=PL4_hYwCyhAvZyW6qS58x4uElZgAkMVUvj)
+    - [Ссылка на GitHub](https://github.com/girafe-ai/ml-course)
+14. [Лекторий ФПМИ, Машинное обучение, 2020. Часть 2.](https://www.youtube.com/playlist?list=PL4_hYwCyhAvY7k32D65q3xJVo8X8dc3Ye)
+15. [Лекторий ФПМИ, Машинное обучение, 2020. Семинары](https://www.youtube.com/playlist?list=PL4_hYwCyhAvZLp0CTIDVQr9FtDR_7DaUr)
 
 ## GitHub Links on Machine Learning
 
