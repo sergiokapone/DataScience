@@ -8,13 +8,16 @@ Data Science is a key element in the modern world, where data plays an important
 
 1. [Лекції GoIT DataScience](https://www.youtube.com/playlist?list=PLSedFp3uvY2WRdUffjDH_Tn3VxYRga37F)
 2. [Заняття GoIT DataScience](https://www.youtube.com/playlist?list=PLSedFp3uvY2WGKEwxy5ihF_U2HVaDXXgF)
-3. [Computer Science Center](https://compscicenter.ru/teachers/618/)
+3. [Вводный курс машинного обучения](https://www.youtube.com/playlist?list=PLX9afROa9MG19JK0JMoy4tIrHvx_z6dHZ)
 4. [Machine learning SelfEdu](https://proproprogs.ru/ml) - overview of mathematical methods of machine learning.
    - [Machine learning SelfEdu Github](https://github.com/selfedu-rus/machine_learning)
 5. [Основы Scikit-learn](https://youtu.be/sNDW8d8eB1U) - library overview `scikit-learn`
 6. [Мини-лекции для подготовки к собеседованиям](https://www.youtube.com/playlist?list=PLOKb3HTyuVMC0-NAlngaHJou7IjECakUI)
-7. [Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
+7. [Хирьянов Т. Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
 8. [machine learrrning](https://www.youtube.com/@machine_learrrning/videos)
+9. [Машинное обучение в физике](https://www.youtube.com/playlist?list=PLcsjsqLLSfNDi6JXY5GYYXLC7sUZ_ZH1o)
+10. [Computer Science Center](https://compscicenter.ru/teachers/618/)
+11. [OpenDataScience по машинному обучению](https://www.youtube.com/playlist?list=PLVlY_7IJCMJdgcCtQfzj5j8OVB_Y0GJCl)
 
 ## GitHub Links on Machine Learning
 
