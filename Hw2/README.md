@@ -25,3 +25,4 @@
 6. [Matplotlib для python on selfedu](https://www.youtube.com/playlist?list=PLA0M1Bcd0w8xQx-X5a6eSEOYULNSnHN_p)
    - [Сайт](https://proproprogs.ru/modules/matplotlib-ustanovka-paketa-i-osnovnye-vozmozhnosti)
 7. [Разведочный анализ (EDA)](https://habr.com/ru/companies/otus/articles/752434/)
+8. [Charts in Colaboratory](https://colab.research.google.com/notebooks/charts.ipynb)
