@@ -1,3 +1,6 @@
+
+![Numpy Logo](image.png)
+
 # Домашнє завдання #1 (Модуль 1 - Знайомство з Data Science)
 
 1. Створіть одновимірний масив (вектор) з першими 10-ма натуральними числами та виведіть його значення.
@@ -35,3 +38,11 @@
 17. Створіть матрицю розміром 3x4 з довільними цілими числами і створінь матрицю з квадратами цих чисел.
 
 18. Створіть вектор розміром 4, заповніть його випадковими цілими числами в діапазоні від 1 до 50 та знайдіть вектор з квадратними коренями цих чисел.
+
+# Links
+
+1. [ВВЕДЕНИЕ В БИБЛИОТЕКУ NUMPY](https://www.youtube.com/watch?v=zac7brx4hyM&ab_channel=machinelearrrning)
+   - [Ноутбук из видео](https://colab.research.google.com/drive/10XGfBhTcHYnwS3ELpllFDjuo1APBFgiW)
+
+2. [Уроки по NumPy от selfedu](https://www.youtube.com/playlist?list=PLA0M1Bcd0w8zmegfAUfFMiACPKfdW4ifD)
+   - [Сайт](https://proproprogs.ru/modules/numpy-ustanovka-i-pervoe-znakomstvo)
