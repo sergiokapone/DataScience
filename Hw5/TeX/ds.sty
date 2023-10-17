@@ -36,23 +36,28 @@
 	right=2cm, %поле праворуч
 ]{geometry}
 
+\RequirePackage{xurl}
+
 \renewcommand{\baselinestretch}{1.2}
 
 \RequirePackage[backend=biber,
 	bibstyle=gost-numeric,
+	url=false,
 	maxnames = 10,
 	babel=other,
-	isbn=true,
-	url=false,
+	isbn=false,
 	defernumbers=true
 ]{biblatex}
+
+\renewcommand{\UrlFont}{\ttfamily\small}
+
 \newbibmacro{string+url}[1]{%
 	\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}%
 }
 \DeclareFieldFormat{title}{\usebibmacro{string+url}{#1}}
+
 \RequirePackage{csquotes}
 
-\addbibresource{SVM.bib}
 \setlength{\parskip}{0.5ex}%
 \setlength{\parindent}{2.5em}%
 
