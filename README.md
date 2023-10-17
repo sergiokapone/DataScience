@@ -25,6 +25,7 @@ Data Science is a key element in the modern world, where data plays an important
 15. [Лекторий ФПМИ, Машинное обучение, 2020. Семинары](https://www.youtube.com/playlist?list=PL4_hYwCyhAvZLp0CTIDVQr9FtDR_7DaUr)
 16. [SciPy tutorials for beginners](https://www.youtube.com/playlist?list=PL1A5nGiCuuctkzARw3rfKIKUJEmby3X14)
 17. [SymPy](https://www.youtube.com/playlist?list=PLSE7WKf_qqo1T5VV1nqXTj2iNiSpFk72T)
+18. [SciPy Ecosystem: NumPy, SciPy, SymPy, Scikit-Learn](https://www.youtube.com/playlist?list=PLSE7WKf_qqo3-ZCrwqlwXC7si3ZBa0OOs)
 
 ## GitHub Links on Machine Learning
 
