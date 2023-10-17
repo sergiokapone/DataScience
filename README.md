@@ -6,13 +6,14 @@ Data Science is a key element in the modern world, where data plays an important
 
 ## Links
 
-1. [Computer Science Center](https://compscicenter.ru/teachers/618/)
-2. [Machine learning SelfEdu](https://proproprogs.ru/ml) - overview of mathematical methods of machine learning.
+1. [Лекції GoIT DataScience](https://www.youtube.com/playlist?list=PLSedFp3uvY2WRdUffjDH_Tn3VxYRga37F)
+2. [Computer Science Center](https://compscicenter.ru/teachers/618/)
+3. [Machine learning SelfEdu](https://proproprogs.ru/ml) - overview of mathematical methods of machine learning.
    - [Machine learning SelfEdu Github](https://github.com/selfedu-rus/machine_learning)
-3. [Основы Scikit-learn](https://youtu.be/sNDW8d8eB1U) - library overview `scikit-learn`
-4. [Мини-лекции для подготовки к собеседованиям](https://www.youtube.com/playlist?list=PLOKb3HTyuVMC0-NAlngaHJou7IjECakUI)
-5. [Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
-6. [machine learrrning](https://www.youtube.com/@machine_learrrning/videos)
+4. [Основы Scikit-learn](https://youtu.be/sNDW8d8eB1U) - library overview `scikit-learn`
+5. [Мини-лекции для подготовки к собеседованиям](https://www.youtube.com/playlist?list=PLOKb3HTyuVMC0-NAlngaHJou7IjECakUI)
+6. [Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
+7. [machine learrrning](https://www.youtube.com/@machine_learrrning/videos)
 
 ## GitHub Links on Machine Learning
 
