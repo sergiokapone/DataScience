@@ -10,7 +10,8 @@
 
 ## Links
 
-1. [Дерево решений (Decision Tree)](https://www.youtube.com/playlist?list=PLkJJmZ1EJno5eV954-PwtRJAw2lE6s-w1)
+1. [Support Vector Machines: All you need to know!](https://www.youtube.com/watch?v=ny1iZ5A8ilA&ab_channel=IntuitiveMachineLearning)
+2. [Дерево решений (Decision Tree)](https://www.youtube.com/playlist?list=PLkJJmZ1EJno5eV954-PwtRJAw2lE6s-w1)
    - [Ссылка на google colab 1: Как обучается дерево решений для регрессии. Decision Tree Regressor.](https://colab.research.google.com/drive/1AF5iURw-R0hPejwxWLi2VspI2BJrCsvl)
    - [Ссылка на google colab 2: КАК НЕ ПЕРЕОБУЧИТЬ ДЕРЕВО РЕШЕНИЙ](https://colab.research.google.com/drive/1JH4yaZ6JyoNVa62lq_IZ4gahtrctPe1G)
    - [Ссылка на google colab 3: ДЕРЕВО РЕШЕНИЙ (DecisionTreeClassifier)](https://colab.research.google.com/drive/1zZ1-yHieyvntLXChVkr2Epq5bsLFherw)
