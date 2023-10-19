@@ -42,3 +42,4 @@ Data Science is a key element in the modern world, where data plays an important
    - List of Data Science Cheatsheets to rule the world.
 7. [Data Science EBooks](https://github.com/data-science-projects-and-resources/Data-Science-EBooks#cheat-sheets)
    - This list contains free learning resources and Interview resources for Data Science, Machine Learning, Deep Learning, Data Analysis, NLP, Big Data and other Data Science related tools.
+8. [Machine Learning from Scratch](https://github.com/dafriedman97/mlbook)
