@@ -15,3 +15,4 @@
    - [Ссылка на google colab 1: Как обучается дерево решений для регрессии. Decision Tree Regressor.](https://colab.research.google.com/drive/1AF5iURw-R0hPejwxWLi2VspI2BJrCsvl)
    - [Ссылка на google colab 2: КАК НЕ ПЕРЕОБУЧИТЬ ДЕРЕВО РЕШЕНИЙ](https://colab.research.google.com/drive/1JH4yaZ6JyoNVa62lq_IZ4gahtrctPe1G)
    - [Ссылка на google colab 3: ДЕРЕВО РЕШЕНИЙ (DecisionTreeClassifier)](https://colab.research.google.com/drive/1zZ1-yHieyvntLXChVkr2Epq5bsLFherw)
+3. [BAGGING, СЛУЧАЙНЫЙ ЛЕС, РАЗЛОЖЕНИЕ ОШИБКИ НА СМЕЩЕНИЕ (BIAS) И РАЗБРОС (VARIANCE)](https://www.youtube.com/watch?v=rawnIo_XtYY&t=2s&ab_channel=machinelearrrning)
