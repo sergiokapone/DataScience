@@ -43,7 +43,7 @@ Data Science is a key element in the modern world, where data plays an important
    - This list contains free learning resources and Interview resources for Data Science, Machine Learning, Deep Learning, Data Analysis, NLP, Big Data and other Data Science related tools.
 7. [Machine Learning from Scratch](https://github.com/dafriedman97/mlbook)
 
-## Books
+## [Books](https://www.youtube.com/watch?v=xtT-cI5mPcE&t=305s&ab_channel=miracl6)
 
 1. Брюс П., Практическая статистика для специалистов Data Science. 2-е издание, - 2021
 2. Николенко С., Кадурин А., Архангельская Е., Глубокое обучение. погружение в мир нейронных сетей. - 2018
