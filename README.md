@@ -12,7 +12,7 @@ Data Science is a key element in the modern world, where data plays an important
 4. [Machine learning SelfEdu](https://proproprogs.ru/ml) - overview of mathematical methods of machine learning.
    - [Machine learning SelfEdu Github](https://github.com/selfedu-rus/machine_learning)
 5. [Основы Scikit-learn](https://youtu.be/sNDW8d8eB1U) - library overview `scikit-learn`
-6. [Глеб Михайлов, анализ данных и вфеф ысшутсу](https://www.youtube.com/@GlebMikhaylov)
+6. [Глеб Михайлов, анализ данных и data science](https://www.youtube.com/@GlebMikhaylov)
    - [GitHub](https://github.com/glebmikha/ds-course)
 7. [Мини-лекции для подготовки к собеседованиям](https://www.youtube.com/playlist?list=PLOKb3HTyuVMC0-NAlngaHJou7IjECakUI)
 8. [Хирьянов Т. Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
