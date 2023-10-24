@@ -16,7 +16,7 @@ Data Science is a key element in the modern world, where data plays an important
    - [GitHub](https://github.com/glebmikha/ds-course)
 7. [Мини-лекции для подготовки к собеседованиям](https://www.youtube.com/playlist?list=PLOKb3HTyuVMC0-NAlngaHJou7IjECakUI)
 8. [Хирьянов Т. Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
-9.  [Machine Learning for Everybody – Full Course](https://www.youtube.com/watch?v=i_LwzRVP7bg&t=443s&ab_channel=freeCodeCamp.org)
+9. [Machine Learning for Everybody – Full Course](https://www.youtube.com/watch?v=i_LwzRVP7bg&t=443s&ab_channel=freeCodeCamp.org)
 10. [Юлия Пономарева, machine learrrning](https://www.youtube.com/@machine_learrrning/videos)
 11. [Машинное обучение в физике](https://www.youtube.com/playlist?list=PLcsjsqLLSfNDi6JXY5GYYXLC7sUZ_ZH1o)
 12. [Computer Science Center](https://compscicenter.ru/teachers/618/)
