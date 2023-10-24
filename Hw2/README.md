@@ -26,3 +26,5 @@
    - [Сайт](https://proproprogs.ru/modules/matplotlib-ustanovka-paketa-i-osnovnye-vozmozhnosti)
 7. [Разведочный анализ (EDA)](https://habr.com/ru/companies/otus/articles/752434/)
 8. [Charts in Colaboratory](https://colab.research.google.com/notebooks/charts.ipynb)
+9. [Анализ Данных на Python и Pandas](https://www.youtube.com/watch?v=dd3RcafdOQk&t=16557s&ab_channel=ГлебМихайлов)
+   - [Ссылки на notebook](https://github.com/glebmikha/ds-course)

@@ -13,3 +13,8 @@
 Для більшого заглиблення в роботу алгоритму, пропонуємо реалізувати алгоритм колабораційної фільтрації з нуля. Для цього ми можемо скористатись нашою домашньою роботою з 3-ого модуля. Якщо ми модифікуємо функцію втрат та розрахунок градієнтів, то зможемо побудувати алгоритм матричної факторизації.
 
 Тут ви можете побачити формули та завантаження датасету. А ось посилання на [назви фільмів](https://drive.google.com/file/d/12XeO4KXQfbvvTdLFbkYA-BeXzhlNnnuo/view) та на [рейтинги](https://drive.google.com/file/d/17V9OhXeZH9Wv17Nkh-Tqxa8svEmRZcIp/view).
+
+## Links
+
+1. [surprise library documentation](https://surprise.readthedocs.io/en/stable/index.html)
+   - [GitHub](https://github.com/NicolasHug/Surprise)
