@@ -1,4 +1,4 @@
-\documentclass[tikz, border=1cm]{standalone}
+\documentclass[tikz, border=0.5cm]{standalone}
 
 \usepackage{fontspec}
 \setsansfont{CMU Sans Serif}%{Arial}
@@ -23,20 +23,20 @@
 
     \newlength{\size}
     	\setlength{\size}{4cm}
-    \node[inner sep=0cm, anchor=south west] at (0, 0) {\includegraphics[width=\size]{digit.png}};
+    \node[inner sep=0cm, anchor=west] at (-2, 2) {\includegraphics[width=1.5\size]{digit.png}};
 
-    \draw[] (0, 0) rectangle (\size, \size);
+%    \draw[] (0, 0) rectangle (\size, \size);
 
-    \draw[-latex] (-0.5, \size+0.5cm) -- ++ (0, -\size-0.5cm) node[below] {$28$};
-    \draw[-latex] (-0.5, \size+0.5cm) -- ++ (\size + 0.5cm, 0) node[right] {$28$};
+%    \draw[-latex] (-0.5, \size+0.5cm) -- ++ (0, -\size-0.5cm) node[below] {$28$};
+%    \draw[-latex] (-0.5, \size+0.5cm) -- ++ (\size + 0.5cm, 0) node[right] {$28$};
 
-    \foreach \i in {0,...,28} {
-        \draw (0, \size*\i/28) -- ++(\size*0.03,0);
-        \draw (\size, \size*\i/28) -- ++(-\size*0.03, 0);
-
-        \draw (\size*\i/28, 0) -- ++(0, \size*0.03);
-        \draw (\size*\i/28, \size) -- ++(0, -\size*0.03);
-    }
+%    \foreach \i in {0,...,28} {
+%        \draw (0, \size*\i/28) -- ++(\size*0.03,0);
+%        \draw (\size, \size*\i/28) -- ++(-\size*0.03, 0);
+%
+%        \draw (\size*\i/28, 0) -- ++(0, \size*0.03);
+%        \draw (\size*\i/28, \size) -- ++(0, -\size*0.03);
+%    }
 
     \node[draw, ultra thick, red, single arrow, text width=1cm] at (5, 2) {};
     \node[draw, ultra thick, red, single arrow, text width=1cm] at (13.5, 2) {};
