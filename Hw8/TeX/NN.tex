@@ -30,7 +30,7 @@
 
 				\ifnum\i>\nlip
 					\edef\s{1}
-					\node at (0, -\i) {\ldots};
+					\node[font=\large] at (0, -\i) {\ldots};
 				\else
 					\edef\s{0}
 				\fi
@@ -65,7 +65,7 @@
 
 				\ifnum\i>\nlfp
 					\edef\s{1}
-					\node at (\xf, -\i) {\ldots};
+					\node[font=\large] at (\xf, -\i) {\ldots};
 				\else
 					\edef\s{0}
 				\fi
@@ -100,7 +100,7 @@
 		\foreach \i in {1,...,\nls} {
 				\ifnum\i>\nlsp
 					\edef\s{1}
-					\node at (\xs, -\i) {\ldots};
+					\node[font=\large] at (\xs, -\i) {\ldots};
 				\else
 					\edef\s{0}
 				\fi
@@ -160,9 +160,9 @@
 				}
 		}
 
-	\node[above, align=center, text width=1cm, text=blue] at (first_layer_1.north) {$128$ neurons};
+	\node[above, align=center, text width=2cm, text=firstLayer, font=\large] at (first_layer_1.north) {$128$ \\neurons};
 
-	\node[above, align=center, text width=1cm, text=orange] at (second_layer_1.north) {$256$ neurons};
+	\node[above, align=center, text width=2cm, text=secondLayer, font=\large] at (second_layer_1.north) {$256$ \\neurons};
 	%	\foreach \i in {1,...,\nlf}{
 	%			\draw[orange] (bias_1) -- (first_layer_\i);
 	%		}
