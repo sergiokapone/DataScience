@@ -17,3 +17,12 @@
 Використайте вивчені техніки виявлення проблем навчання нейронної мережі, і потім поекспериментуйте.
 
 Рішення оформіть у вигляді окремого ноутбука.
+
+## Links
+
+1. [Нейронные сети на Python. Уроки](https://proproprogs.ru/neural_network) - overview of mathematical methods of machine learning.
+   - [Yoputube](https://www.youtube.com/playlist?list=PLA0M1Bcd0w8yv0XGiF1wjerjSZVSrYbjh) 
+   - [Github](https://github.com/selfedu-rus/neural-network)
+2. [Tensorflow 2.x - уроки (для Python)](https://proproprogs.ru/tensorflow)
+   - [Youtube](https://www.youtube.com/playlist?list=PLA0M1Bcd0w8ynD1umfubKq1OBYRXhXkmH)
+   - [GitHub](https://github.com/selfedu-rus/tensorflow)
