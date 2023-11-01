@@ -27,3 +27,4 @@
    - [Логистическая Регрессия | Logistic Regression | Линейная модель для классификации](https://www.youtube.com/watch?v=9BoVCdedvW8&ab_channel=machinelearrrning)
    - [РЕАЛИЗАЦИЯ ЛИНЕЙНОЙ РЕГРЕССИИ | Линейная регрессия | LinearRegression](https://www.youtube.com/watch?v=KJA9A1q9l7E&t=0s&ab_channel=machinelearrrning)
    - [Ccылка на google colab](https://colab.research.google.com/drive/1StXvkwQMVgioB-E-ALf0BT-XcNmE8bKX)
+7. [Ways to improve K-means clustering](https://medium.com/@jonas.nordst/ways-to-improve-k-means-clustering-a2dff251588d)
