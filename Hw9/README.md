@@ -26,3 +26,4 @@
 2. [Tensorflow 2.x - уроки (для Python)](https://proproprogs.ru/tensorflow)
    - [Youtube](https://www.youtube.com/playlist?list=PLA0M1Bcd0w8ynD1umfubKq1OBYRXhXkmH)
    - [GitHub](https://github.com/selfedu-rus/tensorflow)
+3. [3Blue1Brown(ru) Про нейронні мережі](https://www.youtube.com/playlist?list=PLSedFp3uvY2Xs9_xmrsJsXADUBuZgIGdH)
