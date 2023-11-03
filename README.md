@@ -29,6 +29,10 @@ Data Science is a key element in the modern world, where data plays an important
 18. [SciPy tutorials for beginners](https://www.youtube.com/playlist?list=PL1A5nGiCuuctkzARw3rfKIKUJEmby3X14)
 19. [SymPy](https://www.youtube.com/playlist?list=PLSE7WKf_qqo1T5VV1nqXTj2iNiSpFk72T)
 20. [SciPy Ecosystem: NumPy, SciPy, SymPy, Scikit-Learn](https://www.youtube.com/playlist?list=PLSE7WKf_qqo3-ZCrwqlwXC7si3ZBa0OOs)
+21. [Chris Olah's blog](http://colah.github.io/)
+22. [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/)
+    - [GitHub](https://github.com/mnielsen/neural-networks-and-deep-learning)
+23. [Distill](https://distill.pub/)
 
 ## GitHub Links on Machine Learning
 
@@ -52,4 +56,4 @@ Data Science is a key element in the modern world, where data plays an important
 3. Себастьян Рашка, Вахид Мирджалили, Python и машинное обучение: машинное и глубокое обучение с использованием Python, scikit-learn и TensorFlow 2, ООО "Диалектика", - 2020
 4. Chip Huyen, Designing Machine Learning Systems: An Iterative Process for Production-Ready Applications. - 2022
 5. Carlo Requião da Cunha, Machine Learning for the Physical Sciences. - CRC Press, - 2024
-6. [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/)
+
