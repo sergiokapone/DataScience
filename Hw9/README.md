@@ -20,10 +20,7 @@
 
 ## Links
 
-1. [Нейронные сети на Python. Уроки](https://proproprogs.ru/neural_network) - overview of mathematical methods of machine learning.
-   - [Yoputube](https://www.youtube.com/playlist?list=PLA0M1Bcd0w8yv0XGiF1wjerjSZVSrYbjh) 
-   - [Github](https://github.com/selfedu-rus/neural-network)
-2. [Tensorflow 2.x - уроки (для Python)](https://proproprogs.ru/tensorflow)
-   - [Youtube](https://www.youtube.com/playlist?list=PLA0M1Bcd0w8ynD1umfubKq1OBYRXhXkmH)
-   - [GitHub](https://github.com/selfedu-rus/tensorflow)
-3. [3Blue1Brown(ru) Про нейронні мережі](https://www.youtube.com/playlist?list=PLSedFp3uvY2Xs9_xmrsJsXADUBuZgIGdH)
+1. [Базовая классификация: Классифицировать изображения одежды](https://www.tensorflow.org/tutorials/keras/classification?hl=ru)
+2. [Анализ подбора гиперпараметров при обучении нейронной сети прямого распространения — FNN (на примере MNIST)](https://habr.com/ru/articles/724418/)
+3. [Анализ подбора гиперпараметров при обучении нейронной сети прямого распространения — FNN (на примере MNIST). Часть 2](https://habr.com/ru/articles/733172/)
+4. [Автоматический подбор гиперпараметров и архитектур нейронных сетей. Часть 1](https://habr.com/ru/articles/725182/)
