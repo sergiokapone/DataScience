@@ -21,7 +21,8 @@
 ## Links
 
 1. [Transfer Learning on Greyscale Images: How to Fine-Tune Pretrained Models on Black-and-White Datasets](https://towardsdatascience.com/transfer-learning-on-greyscale-images-how-to-fine-tune-pretrained-models-on-black-and-white-9a5150755c7a)
-2. [CNN Explainer](https://poloclub.github.io/cnn-explainer/)
+2. [CNN Explainer: Learn Convolutional Neural Network (CNN) in your browser!
+](https://poloclub.github.io/cnn-explainer/)
 3. [VGG16 Neural Network Visualization](https://www.youtube.com/watch?v=RNnKtNrsrmg&ab_channel=DenisDmitriev)
 4. [Сверточная нейронная сеть, часть 1: структура, топология, функции активации и обучающее множество](https://habr.com/ru/articles/348000/)
 5. [Сверточная нейронная сеть, часть 2: обучение алгоритмом обратного распространения ошибки](https://habr.com/ru/articles/348028/)
