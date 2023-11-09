@@ -42,3 +42,4 @@
    - [Ссылка на colab 7: Boston Housing Dataset | Задача регрессии | Детали метода fit](https://colab.research.google.com/drive/19hn26sPpju5X_Tf6YozeCeNNS3CVHZaA)
    - [Ссылка на colab 8: ModelCheckpoint, ReduceLROnPlateau, EarlyStopping | Callbacks Keras](https://colab.research.google.com/drive/1YfaU5tXwPWicIe9KVB50xWBtU214tAQj)
    - [Ссылка на colab 9: Оптимизаторы нейронных сетей | SGD, RMSProp, Adam | keras.optimizers](https://colab.research.google.com/drive/1l8h7aSKUfVCqCuO2JdGdiwnO9tGSi8h9)
+7. [Step-by-step Artificial Neural Network visualizer](http://experiments.mostafa.io/public/ffbpann/)
