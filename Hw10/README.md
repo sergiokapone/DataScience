@@ -26,3 +26,4 @@
 3. [VGG16 Neural Network Visualization](https://www.youtube.com/watch?v=RNnKtNrsrmg&ab_channel=DenisDmitriev)
 4. [Сверточная нейронная сеть, часть 1: структура, топология, функции активации и обучающее множество](https://habr.com/ru/articles/348000/)
 5. [Сверточная нейронная сеть, часть 2: обучение алгоритмом обратного распространения ошибки](https://habr.com/ru/articles/348028/)
+6. [Classification of Neural Network Hyperparameters // Medium](https://towardsdatascience.com/classification-of-neural-network-hyperparameters-c7991b6937c3)
