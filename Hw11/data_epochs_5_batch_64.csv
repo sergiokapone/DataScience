@@ -1,0 +1,5 @@
+ edu_time test_loss test_acc eval_time
+SRNN 182.65 0.49 0.81 22.62
+Bidirectional_SRNN 304.76 0.47 0.79 25.21
+LSTM 544.57 0.32 0.87 55.54
+Bidirectional_LSTM 1129.91 0.32 0.87 72.67
