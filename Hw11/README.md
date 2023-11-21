@@ -12,3 +12,4 @@
 
 1. [Recurrent layers: keras documentation](https://keras.io/api/layers/recurrent_layers/)
 2. [Рекуррентные нейронные сети (RNN) с Keras](https://habr.com/ru/articles/487808/)
+3. [RNN, LSTM & GRU](http://dprogrammer.org/rnn-lstm-gru)
