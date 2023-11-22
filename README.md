@@ -6,33 +6,54 @@ Data Science is a key element in the modern world, where data plays an important
 
 ## Links
 
+
+### GoIT materials
+
 1. [Лекції GoIT DataScience](https://www.youtube.com/playlist?list=PLSedFp3uvY2WRdUffjDH_Tn3VxYRga37F)
 2. [Заняття GoIT DataScience](https://www.youtube.com/playlist?list=PLSedFp3uvY2WGKEwxy5ihF_U2HVaDXXgF)
-3. [Вводный курс машинного обучения](https://www.youtube.com/playlist?list=PLX9afROa9MG19JK0JMoy4tIrHvx_z6dHZ)
-4. [Machine learning SelfEdu](https://proproprogs.ru/ml) - overview of mathematical methods of machine learning.
-   - [Machine learning SelfEdu Github](https://github.com/selfedu-rus/machine_learning)
-5. [Основы Scikit-learn](https://youtu.be/sNDW8d8eB1U) - library overview `scikit-learn`
-6. [Глеб Михайлов, анализ данных и data science](https://www.youtube.com/@GlebMikhaylov)
+
+## Python Basics for Data Science
+
+1. [Хирьянов Т. Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
+
+### Python Packages for Data Science and Machine Learning
+
+1. [SciPy tutorials for beginners](https://www.youtube.com/playlist?list=PL1A5nGiCuuctkzARw3rfKIKUJEmby3X14)
+2. [SymPy](https://www.youtube.com/playlist?list=PLSE7WKf_qqo1T5VV1nqXTj2iNiSpFk72T)
+3. [SciPy Ecosystem: NumPy, SciPy, SymPy, Scikit-Learn](https://www.youtube.com/playlist?list=PLSE7WKf_qqo3-ZCrwqlwXC7si3ZBa0OOs)
+4. [Основы Scikit-learn](https://youtu.be/sNDW8d8eB1U) - library overview `scikit-learn`
+
+### Machine Learning
+
+1. [Machine Learning for Everybody – Full Course](https://www.youtube.com/watch?v=i_LwzRVP7bg&t=443s&ab_channel=freeCodeCamp.org)
+2. [Глеб Михайлов, анализ данных и data science](https://www.youtube.com/@GlebMikhaylov)
    - [GitHub](https://github.com/glebmikha/ds-course)
-7. [Мини-лекции для подготовки к собеседованиям](https://www.youtube.com/playlist?list=PLOKb3HTyuVMC0-NAlngaHJou7IjECakUI)
-8. [Хирьянов Т. Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
-9. [Machine Learning for Everybody – Full Course](https://www.youtube.com/watch?v=i_LwzRVP7bg&t=443s&ab_channel=freeCodeCamp.org)
-10. [Юлия Пономарева, machine learrrning](https://www.youtube.com/@machine_learrrning/videos)
-11. [Машинное обучение в физике](https://www.youtube.com/playlist?list=PLcsjsqLLSfNDi6JXY5GYYXLC7sUZ_ZH1o)
-12. [Computer Science Center](https://compscicenter.ru/teachers/618/)
-13. [Kashnitsky Yury, OpenDataScience по машинному обучению](https://www.youtube.com/playlist?list=PLVlY_7IJCMJdgcCtQfzj5j8OVB_Y0GJCl)
-14. [Sergey Nikolenko, СПбГУ - 2020-2021 - Машинное обучение](https://www.youtube.com/playlist?list=PLwdBkWbW0oHEUmY07a0G5jabP_fWfGQet)
-15. [Лекторий ФПМИ, Машинное обучение, 2020. Часть 1.](https://www.youtube.com/playlist?list=PL4_hYwCyhAvZyW6qS58x4uElZgAkMVUvj)
+3. [Мини-лекции для подготовки к собеседованиям](https://www.youtube.com/playlist?list=PLOKb3HTyuVMC0-NAlngaHJou7IjECakUI)
+4. [Вводный курс машинного обучения](https://www.youtube.com/playlist?list=PLX9afROa9MG19JK0JMoy4tIrHvx_z6dHZ)
+5. [Machine learning SelfEdu](https://proproprogs.ru/ml) - overview of mathematical methods of machine learning.
+   - [Machine learning SelfEdu Github](https://github.com/selfedu-rus/machine_learning)
+6. [Юлия Пономарева, machine learning](https://www.youtube.com/@machine_learrrning/videos)
+7. [Kashnitsky Yury, OpenDataScience по машинному обучению](https://www.youtube.com/playlist?list=PLVlY_7IJCMJdgcCtQfzj5j8OVB_Y0GJCl)
+8. [Sergey Nikolenko, СПбГУ - 2020-2021 - Машинное обучение](https://www.youtube.com/playlist?list=PLwdBkWbW0oHEUmY07a0G5jabP_fWfGQet)
+9. [Александр Дьяконов. Глубокое обучение 2022](https://www.youtube.com/playlist?list=PLaRUeIuewv8BYOrm6HBgJKbGUD-jcBQpW)
+    - [GitHub](https://github.com/Dyakonov/DL/tree/master)
+10. [Лекторий ФПМИ, Машинное обучение, 2020. Часть 1.](https://www.youtube.com/playlist?list=PL4_hYwCyhAvZyW6qS58x4uElZgAkMVUvj)
     - [Ссылка на GitHub](https://github.com/girafe-ai/ml-course)
-16. [Лекторий ФПМИ, Машинное обучение, 2020. Часть 2.](https://www.youtube.com/playlist?list=PL4_hYwCyhAvY7k32D65q3xJVo8X8dc3Ye)
-17. [Лекторий ФПМИ, Машинное обучение, 2020. Семинары](https://www.youtube.com/playlist?list=PL4_hYwCyhAvZLp0CTIDVQr9FtDR_7DaUr)
-18. [SciPy tutorials for beginners](https://www.youtube.com/playlist?list=PL1A5nGiCuuctkzARw3rfKIKUJEmby3X14)
-19. [SymPy](https://www.youtube.com/playlist?list=PLSE7WKf_qqo1T5VV1nqXTj2iNiSpFk72T)
-20. [SciPy Ecosystem: NumPy, SciPy, SymPy, Scikit-Learn](https://www.youtube.com/playlist?list=PLSE7WKf_qqo3-ZCrwqlwXC7si3ZBa0OOs)
-21. [Chris Olah's blog](http://colah.github.io/)
-22. [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/)
+11. [Лекторий ФПМИ, Машинное обучение, 2020. Часть 2.](https://www.youtube.com/playlist?list=PL4_hYwCyhAvY7k32D65q3xJVo8X8dc3Ye)
+12. [Лекторий ФПМИ, Машинное обучение, 2020. Семинары](https://www.youtube.com/playlist?list=PL4_hYwCyhAvZLp0CTIDVQr9FtDR_7DaUr)
+
+### Applications of Machine Learning
+
+1. [Машинное обучение в физике](https://www.youtube.com/playlist?list=PLcsjsqLLSfNDi6JXY5GYYXLC7sUZ_ZH1o)
+
+### Internet Resources
+
+1. [Chris Olah's blog](http://colah.github.io/)
+2. [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/)
     - [GitHub](https://github.com/mnielsen/neural-networks-and-deep-learning)
-23. [Distill](https://distill.pub/)
+3. [Distill](https://distill.pub/)
+4. [Computer Science Center](https://compscicenter.ru/teachers/618/)
+
 
 ## GitHub Links on Machine Learning
 
