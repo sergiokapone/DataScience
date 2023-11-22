@@ -13,7 +13,10 @@
 1. [Recurrent layers: keras documentation](https://keras.io/api/layers/recurrent_layers/)
 2. [Рекуррентные нейронные сети (RNN) с Keras](https://habr.com/ru/articles/487808/)
 3. [RNN, LSTM & GRU](http://dprogrammer.org/rnn-lstm-gru)
-4. Александр Дьяконов. Рекурентные нейросети.
+
+## Video-lectures on RNN
+
+1. Александр Дьяконов. Рекурентные нейросети.
    - [Материалы лекции](https://github.com/Dyakonov/DL/blob/master/2022/DL_3NLP_01rnn_202203a.pdf)
    - [Видео-лекция. Часть 1.](https://www.youtube.com/watch?v=mxXAwV-8w74&t=1192s)
    - [Видео-лекция. Часть 2.](https://youtu.be/TyRcJ113bEo?list=PLaRUeIuewv8BYOrm6HBgJKbGUD-jcBQpW)
