@@ -78,4 +78,3 @@ Data Science is a key element in the modern world, where data plays an important
 3. Себастьян Рашка, Вахид Мирджалили, Python и машинное обучение: машинное и глубокое обучение с использованием Python, scikit-learn и TensorFlow 2, ООО "Диалектика", - 2020
 4. Chip Huyen, Designing Machine Learning Systems: An Iterative Process for Production-Ready Applications. - 2022
 5. Carlo Requião da Cunha, Machine Learning for the Physical Sciences. - CRC Press, - 2024
-g
