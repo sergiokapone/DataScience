@@ -69,6 +69,7 @@ Data Science is a key element in the modern world, where data plays an important
 6. [Data Science EBooks](https://github.com/data-science-projects-and-resources/Data-Science-EBooks#cheat-sheets)
    - This list contains free learning resources and Interview resources for Data Science, Machine Learning, Deep Learning, Data Analysis, NLP, Big Data and other Data Science related tools.
 7. [Machine Learning from Scratch](https://github.com/dafriedman97/mlbook)
+8. [AWESOME DATA SCIENCE](https://github.com/academic/awesome-datascience)
 
 ## [Books](https://www.youtube.com/watch?v=xtT-cI5mPcE&t=305s&ab_channel=miracl6)
 
@@ -77,4 +78,4 @@ Data Science is a key element in the modern world, where data plays an important
 3. Себастьян Рашка, Вахид Мирджалили, Python и машинное обучение: машинное и глубокое обучение с использованием Python, scikit-learn и TensorFlow 2, ООО "Диалектика", - 2020
 4. Chip Huyen, Designing Machine Learning Systems: An Iterative Process for Production-Ready Applications. - 2022
 5. Carlo Requião da Cunha, Machine Learning for the Physical Sciences. - CRC Press, - 2024
-
+g
