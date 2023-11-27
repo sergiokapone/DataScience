@@ -12,7 +12,7 @@ Data Science is a key element in the modern world, where data plays an important
 1. [Лекції GoIT DataScience](https://www.youtube.com/playlist?list=PLSedFp3uvY2WRdUffjDH_Tn3VxYRga37F)
 2. [Заняття GoIT DataScience](https://www.youtube.com/playlist?list=PLSedFp3uvY2WGKEwxy5ihF_U2HVaDXXgF)
 
-## Python Basics for Data Science
+### Python Basics for Data Science
 
 1. [Хирьянов Т. Основы программирования и анализа данных на Python](https://www.youtube.com/playlist?list=PL2mBTfXHM2qgCMm8RtXm59w27bPTQx55I)
 
